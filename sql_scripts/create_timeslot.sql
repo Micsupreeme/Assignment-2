@@ -1,8 +1,10 @@
-CREATE TABLE `s4922402`.`timeslot` (
-  `tsl_id` INT NOT NULL AUTO_INCREMENT,
-  `tsl_start` DATETIME NOT NULL,
-  `tsl_end` DATETIME NOT NULL,
-  `tsl_lecturer_id` INT NOT NULL,
-  `tsl_booked` TINYINT(1) NOT NULL DEFAULT 0,
+CREATE TABLE `timeslot` (
+  `tsl_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tsl_start` datetime NOT NULL,
+  `tsl_end` datetime NOT NULL,
+  `tsl_lecturer_id` int(11) NOT NULL,
+  `tsl_booked` tinyint(1) NOT NULL DEFAULT '0',
+  `tsl_location` varchar(100) NOT NULL,
   PRIMARY KEY (`tsl_id`),
-  UNIQUE INDEX `tsl_id_UNIQUE` (`tsl_id` ASC));
+  UNIQUE KEY `tsl_id_UNIQUE` (`tsl_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
