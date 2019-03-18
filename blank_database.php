@@ -70,6 +70,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+
+/*
+Fill this out and rename it to database.php, then move it to application/config
+Do not add this file to the repository!
+-Dan
+*/
+
 $active_group = 'default';
 $query_builder = TRUE;
 
