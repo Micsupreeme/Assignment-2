@@ -6,12 +6,13 @@ class User extends CI_Controller {
 		$this->load->model('User_model');
 		$this->load->helper('url_helper');
 	}
-	public function index()
+	public function addressbook()
 	{
 		$data['user_instance'] = $this->User_model->get_user();
-		$data['title'] = 'Users';
+		$data['title'] = 'Address Book';
 		$this->load->view('templates/header', $data);
-		$this->load->view('user/index', $data);
+		$this->load->view('pages/addressbook');
+		$this->load->view('user/addressbook', $data);
 		$this->load->view('templates/footer');
 	}
 	public function view($id = NULL)
