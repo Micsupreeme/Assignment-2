@@ -16,6 +16,6 @@
 				break;
 		}
 		?>
-		<?php echo $user['usr_last_name'] . ', ' . $user['usr_first_name'] . ' '; ?><a href="<?php echo trim($_SERVER['PHP_SELF'], "addressbook") . 'view/' . $user['usr_id']; ?>">View Profile</a>
+		<?php echo '<a href="' . trim($_SERVER['PHP_SELF'], "addressbook") . 'profile/' . $user['usr_id'] . '">' . $user['usr_last_name'] . ', ' . $user['usr_first_name'] . '</a>'?>
 	</p></div>
 <?php endforeach; ?>

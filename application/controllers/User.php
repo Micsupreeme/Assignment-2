@@ -15,15 +15,15 @@ class User extends CI_Controller {
 		$this->load->view('user/addressbook', $data);
 		$this->load->view('templates/footer');
 	}
-	public function view($id = NULL)
+	public function profile($id = NULL)
 	{
 		$data['user_instance'] = $this->User_model->get_user($id);
 		if (empty($data['user_instance'])) {
 			show_404();
 		}
-		$data['title'] = $data['user_instance']['usr_first_name'];
+		$data['title'] = $data['user_instance']['usr_first_name'] . "'s Profile";
 		$this->load->view('templates/header', $data);
-		$this->load->view('user/view', $data);
+		$this->load->view('pages/profile');
 		$this->load->view('templates/footer');
 	}
 }
