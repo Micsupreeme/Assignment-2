@@ -18,7 +18,7 @@ switch ($user_instance['usr_auth_level']) {
 ?></label><br>
 <label>Email: <?php echo $user_instance['usr_email']; ?> </label><br>
 <?php
-if($user_instance['usr_auth_level'] == 0) {
+if($user_instance['usr_auth_level'] == 0) { //Only display an assigned lecturer for students
 	$data['user_lecturer'] = $this->User_model->get_user($user_instance['usr_assigned_lecturer_id']);
 	echo '<label>Assigned Lecturer: ' . '<a href="' . substr($_SERVER['PHP_SELF'], 0, -1) . $data['user_lecturer']['usr_id'] . '">' . $data['user_lecturer']['usr_first_name'] . ' ' . $data['user_lecturer']['usr_last_name'] . '</a></label><br>';
 }
