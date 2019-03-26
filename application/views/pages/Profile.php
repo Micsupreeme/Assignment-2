@@ -1,4 +1,4 @@
-<form action="register.php" method="post" autocomplete = "off">
+<form action="Register.php" method="post" autocomplete = "off">
     <label>Name:</label><br>
     <label>Student/ Lecturer:</label><br>
     <label>Email:</label><br>

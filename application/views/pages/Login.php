@@ -1,4 +1,4 @@
-<form action="login.php" method="post" autocomplete = "off">
+<form action="Login.php" method="post" autocomplete = "off">
         <label>Email Address:</label>
         <input type="email" placeholder="Enter your Email" name="userEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
         <label>Password:</label>
