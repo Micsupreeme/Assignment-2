@@ -25,4 +25,17 @@
 			$query = $this->db->get_where('user', array('usr_assigned_lecturer_id' => $lecturerId)); //Assigned lecturer ID specified, get students assigned to that lecturer
 			return $query->result_array(); //result_array can return multiple records
 		}
+
+        public function validateLogin($email, $password){
+            //$query = $this->db->get_where('user', array('usr_email' => $email) AND array('usr_my_key' => $password));
+            //return $query->row_array();
+
+            $this->db->where('usr_email', $email);
+            $this->db->where('usr_my_key', $password);
+            $query = $this->db->get('user');
+
+            return $query->row_array();
+
+        }
+
 	}

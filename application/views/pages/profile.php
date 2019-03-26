@@ -25,4 +25,3 @@ if($user_instance['usr_auth_level'] == 0) { //Only display an assigned lecturer 
 ?>
 <label>Bio:</label><br>
 <textarea readonly rows="4" cols="50"> <?php echo $user_instance['usr_bio']; ?> </textarea>
->>>>>>> 9242f2047da522982e433f0a5a240b3f8452c854:application/views/pages/profile.php
