@@ -1,6 +1,6 @@
 CREATE TABLE `message` (
   `msg_id` int(11) NOT NULL AUTO_INCREMENT,
-  `msg_author` int(11) NOT NULL,
+  `msg_author` varchar(200) NOT NULL,
   `msg_subject` varchar(200) NOT NULL,
   `msg_recipient` varchar(100) NOT NULL,
   `msg_date` datetime NOT NULL,
