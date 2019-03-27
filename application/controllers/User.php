@@ -106,7 +106,7 @@ class User extends CI_Controller {
         }
     }
 
-    function isLoggedIn(){
+    public function isLoggedIn(){
 	    if($this->session->userdata('emailAddress')!=''){
             return true;
         }
@@ -116,7 +116,7 @@ class User extends CI_Controller {
         }
     }
 
-    function logout(){
+    public function logout(){
 	    $this->session->unset_userdata('emailAddress', 'authLevel');
 	    $this->session->sess_destroy();
 	    redirect(base_url() . 'user/login');
