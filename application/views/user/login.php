@@ -4,5 +4,5 @@
         <label>Password:</label>
         <input type="password" name="userPassword" placeholder="Enter your Password"><br>
         <input name="login" type="submit" id="login" value="Log In">
-        <input name="register" type="submit" id="register" value="Register">
 </form>
+<p>New user? Please <a href="<?php echo base_url('user/registerUser'); ?>">click here</a> to register</p>
