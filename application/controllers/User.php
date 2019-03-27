@@ -89,7 +89,10 @@ class User extends CI_Controller {
 
             if(isset($data['currentUser']['usr_id'])){
                 $session_data = array(
+                    'id' => $data ['currentUser']['usr_id'],
                     'emailAddress' => $data['currentUser']['usr_email'],
+                    'firstName' => $data['currentUser']['usr_first_name'],
+                    'lastName' => $data['currentUser']['usr_last_name'],
                     'authLevel' => $data['currentUser']['usr_auth_level']
                 );
                 $this->session->set_userdata($session_data);
@@ -97,18 +100,6 @@ class User extends CI_Controller {
             } else {
                 redirect(base_url().'user/login');
             }
-
-            /*
-            if($this->User_model->validateLogin($email, $password)){
-                $session_data = array(
-                    'emailAddress' => $email
-                );
-                $this->session->set_userdata($session_data);
-                redirect(base_url() . 'user/profile/1');  // user ID required
-            }
-            else{
-                redirect(base_url().'user/login');
-            }*/
         }
         else{
             $this->login();
