@@ -53,6 +53,27 @@ class User extends CI_Controller {
 	    $this->load->view("user/login", $data);
     }
 
+    public function registerUser(){
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $data['title'] = 'register';
+        $this->form_validation->set_rules('userEmail', 'Email', 'required');
+        $this->form_validation->set_rules('firstName', 'FirstName', 'required');
+        $this->form_validation->set_rules('surname', 'Surname', 'required');
+        $this->form_validation->set_rules('userPassword', 'Password', 'required');
+        $this->form_validation->set_rules('role', 'Role', 'required');
+        if ($this->form_validation->run() === FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('user/register');
+            $this->load->view('templates/footer');
+        } else {
+            $this->User_model->addUser();
+            $this->load->view('templates/header', $data);
+            $this->load->view('user/registerSuccess');
+            $this->load->view('templates/footer');
+        }
+    }
+
     public function validate_login(){
         $this->load->library('form_validation');
         $this->form_validation->set_rules('userEmail', 'Email', 'required');

@@ -1,4 +1,4 @@
-<form action="register.php" method="post" autocomplete = "off">
+<form method="post" action = "<?php echo base_url();?>user/registerUser">
     <label>Email Address:</label>
     <input type="email" placeholder="Enter your Email" name="userEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
     <label>First Name:</label>
@@ -8,8 +8,8 @@
     <label>Password:</label>
     <input type="password" name="userPassword" placeholder="Enter your Password"><br>
     <label>I am a:</label><br>
-    <input type="radio" name="role" value="student"> Student<br>
-    <input type="radio" name="role" value="lecturer"> Lecturer<br>
-    <input name="submit" type="submit" id="Submit" formaction="" value="Submit">
-    <input name="clear" type="submit" id="clear" value="Clear Form"
+    <input type="radio" name="role" value=0 checked="checked"> Student<br>
+    <input type="radio" name="role" value=1> Lecturer<br>
+    <input name="submit" type="submit" id="Submit" value="Submit">
+    <input name="clear" type="submit" id="clear" value="Clear Form">
 </form>

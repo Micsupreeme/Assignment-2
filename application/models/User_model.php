@@ -38,4 +38,16 @@
 
         }
 
+        public function addUser(){
+
+            $data = array(
+                'usr_email' => $this->input->post('userEmail'),
+                'usr_my_key' => $this->input->post('userPassword'),
+                'usr_first_name' => $this->input->post('firstName'),
+                'usr_last_name' => $this->input->post('surname'),
+                'usr_auth_level' => $this->input->post('role'),
+            );
+            $this->db->insert('user', $data);
+        }
+
 	}
