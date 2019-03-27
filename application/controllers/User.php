@@ -20,10 +20,6 @@ class User extends CI_Controller {
 	
 	public function profile($id = NULL){
         if($this->isLoggedIn()){
-            echo '<h2> Welcome: ' . $this->session->userdata('emailAddress') . '</h2>';
-            echo '<h3> Waddup! my auth level is:' . $this->session->userdata('authLevel') . '</h3>';
-            echo '<label><a href="'.base_url().'user/logout">Logout</a></label>';
-
             $data['user_instance'] = $this->User_model->get_user($id);
             if (empty($data['user_instance'])) {
                 show_404();
@@ -96,7 +92,7 @@ class User extends CI_Controller {
                     'authLevel' => $data['currentUser']['usr_auth_level']
                 );
                 $this->session->set_userdata($session_data);
-                redirect(base_url() . 'user/profile/1');  // user ID required
+                redirect(base_url() . 'user/profile/' . $this->session->userdata('id'));
             } else {
                 redirect(base_url().'user/login');
             }
