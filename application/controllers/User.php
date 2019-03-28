@@ -26,10 +26,26 @@ class User extends CI_Controller {
             }
             $data['title'] = $data['user_instance']['usr_first_name'] . "'s Profile";
             $this->load->view('templates/header', $data);
-            $this->load->view('pages/profile');
+            $this->load->view('pages/profile', $data);
             $this->load->view('templates/footer');
         }
 	}
+
+	public function editprofile($id = NULL){
+        if($this->isLoggedIn()){
+            $data['user_instance'] = $this->User_model->get_user($id);
+            if (empty($data['user_instance'])) {
+                show_404();
+            }
+
+            redirect(base_url() . 'user/profile/' . $this->session->userdata('id'));
+
+            $data['title'] = $data['user_instance']['usr_first_name'] . "'s Profile";
+            $this->load->view('templates/header', $data);
+            $this->load->view('pages/editprofile', $data);
+            $this->load->view('templates/footer');
+        }
+    }
 	
 	public function students($lecturerId = NULL){
 		$data['lecturer'] = $this->User_model->get_user($lecturerId);
