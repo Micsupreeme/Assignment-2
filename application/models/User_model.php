@@ -50,4 +50,15 @@
             $this->db->insert('user', $data);
         }
 
+        public function editProfile(){
+            $data = array(
+                'usr_bio' => $this->input->post('taBio'),
+                'usr_profile_is_private' => $this->input->post('radVisibility'),
+            );
+            $query = $this->db->query ("UPDATE user SET usr_bio = '" . $data['usr_bio'] . "' , usr_profile_is_private = '"
+                . $data['usr_profile_is_private']. "'WHERE usr_id = '". $this->session->userdata('id') . "';");
+
+            return $query;
+        }
+
 	}

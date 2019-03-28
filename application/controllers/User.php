@@ -26,24 +26,31 @@ class User extends CI_Controller {
             }
             $data['title'] = $data['user_instance']['usr_first_name'] . "'s Profile";
             $this->load->view('templates/header', $data);
-            $this->load->view('pages/profile', $data);
+            $this->load->view('user/profile', $data);
             $this->load->view('templates/footer');
         }
 	}
 
-	public function editprofile($id = NULL){
+	public function editProfile(){
         if($this->isLoggedIn()){
-            $data['user_instance'] = $this->User_model->get_user($id);
-            if (empty($data['user_instance'])) {
-                show_404();
-            }
-
-            redirect(base_url() . 'user/profile/' . $this->session->userdata('id'));
-
+            $this->load->helper('form');
+            $this->load->library('form_validation');
+            $data['title'] = 'register';
+            $this->form_validation->set_rules('taBio', 'Bio', 'required');
+            $this->form_validation->set_rules('radVisibility', 'Visbility', 'required');
+            $data['user_instance'] = $this->User_model->get_user($this->session->userdata('id'));
             $data['title'] = $data['user_instance']['usr_first_name'] . "'s Profile";
             $this->load->view('templates/header', $data);
-            $this->load->view('pages/editprofile', $data);
+            $this->load->view('user/editprofile', $data);
             $this->load->view('templates/footer');
+            if ($this->form_validation->run() === TRUE) {
+                $this->User_model->editProfile();
+                redirect(base_url('user/profile/') . $this->session->userdata('id'));
+                //$this->load->view('templates/header', $data);
+                //$this->load->view('user/profile/' . $this->session->userdata('id'), $data);
+                //$this->load->view('templates/footer');
+            }
+
         }
     }
 	
