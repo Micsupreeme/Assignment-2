@@ -12,7 +12,6 @@ class User extends CI_Controller {
             $data['user_instance'] = $this->User_model->get_user();
             $data['title'] = 'Address Book';
             $this->load->view('templates/header', $data);
-            $this->load->view('pages/addressbook');
             $this->load->view('user/addressbook', $data);
             $this->load->view('templates/footer');
         }
@@ -24,7 +23,7 @@ class User extends CI_Controller {
             if (empty($data['user_instance'])) {
                 show_404();
             }
-            $data['title'] = $data['user_instance']['usr_first_name'] . "'s Profile";
+            $data['title'] = $data['user_instance']['usr_first_name'] . ' ' . $data['user_instance']['usr_last_name'] . "'s Profile";
             $this->load->view('templates/header', $data);
             $this->load->view('user/profile', $data);
             $this->load->view('templates/footer');
@@ -54,17 +53,18 @@ class User extends CI_Controller {
         }
     }
 	
-	public function students($lecturerId = NULL){
-		$data['lecturer'] = $this->User_model->get_user($lecturerId);
-		$data['user_instance'] = $this->User_model->get_student($lecturerId);
-		if (empty($data['user_instance'])) {
-			show_404();
+	public function students(){
+		if($this->isLoggedIn()){
+			$data['lecturer'] = $this->User_model->get_user($this->session->userdata('id'));
+			$data['user_instance'] = $this->User_model->get_student($this->session->userdata('id'));
+			if (empty($data['user_instance'])) {
+				show_404();
+			}
+			$data['title'] = 'Students Assigned to ' . $data['lecturer']['usr_first_name'] . ' ' . $data['lecturer']['usr_last_name'];
+			$this->load->view('templates/header', $data);
+			$this->load->view('user/mystudents', $data);
+			$this->load->view('templates/footer');
 		}
-		$data['title'] = 'Students Assigned to ' . $data['lecturer']['usr_first_name'] . ' ' . $data['lecturer']['usr_last_name'];
-		$this->load->view('templates/header', $data);
-		$this->load->view('pages/mystudents');
-		$this->load->view('user/mystudents', $data);
-		$this->load->view('templates/footer');
 	}
 
     public function login(){

@@ -1,2 +1,0 @@
-<h1>My Students</h1>
-<p>Browse students assigned to <?php echo '<a href="' . substr($_SERVER['PHP_SELF'], 0, -10) . 'profile/' . $lecturer['usr_id'] . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . '</a>'; ?></p>

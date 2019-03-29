@@ -8,20 +8,22 @@ class Timeslot extends CI_Controller {
 		$this->load->model('User_model');
 		$this->load->helper('url_helper');
 	}
-	public function manage($lecturerId = NULL) {
-		$this->display($lecturerId);
-		$this->add($lecturerId);
+	public function manage() {
+		if($this->isLoggedIn()){
+			$this->display();
+			$this->add();
+		}
 	}
 	
-	//For the "My Timeslots" page
-	public function display($lecturerId = NULL)
+	//For the "My Timeslots" list
+	private function display()
 	{
 		if(isset($_GET['delete'])) {
 			$this->Timeslot_model->deleteTimeslot($_GET['delete']);
 		}
 		
-		$data['lecturer'] = $this->User_model->get_user($lecturerId);
-		$data['timeslot_instance'] = $this->Timeslot_model->get_my_timeslots($lecturerId);
+		$data['lecturer'] = $this->User_model->get_user($this->session->userdata('id'));
+		$data['timeslot_instance'] = $this->Timeslot_model->get_my_timeslots($this->session->userdata('id'));
 		if (empty($data['timeslot_instance'])) {
 			show_404();
 		}
@@ -31,21 +33,31 @@ class Timeslot extends CI_Controller {
 	}
 	
 	//For the "Add Timeslot" form
-	public function add($lecturerId = NULL)
+	private function add()
 	{		
 		$this->load->helper('form');
         $this->load->library('form_validation');
 		
-		$data['lecturer'] = $this->User_model->get_user($lecturerId);
+		$data['lecturer'] = $this->User_model->get_user($this->session->userdata('id'));
         $this->form_validation->set_rules('dateStart', 'Start Date/Time', 'required');
         $this->form_validation->set_rules('dateEnd', 'Start Date/Time', 'required');
         $this->form_validation->set_rules('txtLocation', 'Location', 'required');
 		
         if ($this->form_validation->run() === TRUE) {
-            $this->Timeslot_model->addTimeslot($lecturerId);
-			redirect(base_url() . 'timeslot/manage/' . $lecturerId, 'refresh');
+            $this->Timeslot_model->addTimeslot($this->session->userdata('id'));
+			redirect(base_url() . 'timeslot/manage', 'refresh');
         }	
 		$this->load->view('timeslot/addtimeslot', $data);
 		$this->load->view('templates/footer');
 	}
+	
+	public function isLoggedIn(){
+	    if($this->session->userdata('emailAddress')!=''){
+            return true;
+        }
+	    else{
+	        redirect(base_url().'user/login');
+            return false;
+        }
+    }
 }
