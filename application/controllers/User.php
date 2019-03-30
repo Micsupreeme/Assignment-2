@@ -46,9 +46,6 @@ class User extends CI_Controller {
             if ($this->form_validation->run() === TRUE) {
                 $this->User_model->editProfile();
                 redirect(base_url('user/profile/') . $this->session->userdata('id'));
-                //$this->load->view('templates/header', $data);
-                //$this->load->view('user/profile/' . $this->session->userdata('id'), $data);
-                //$this->load->view('templates/footer');
             }
 
         }
@@ -89,6 +86,7 @@ class User extends CI_Controller {
             $this->User_model->addUser();
             $this->load->view('templates/header', $data);
             $this->load->view('user/registerSuccess');
+            $this->load->view('user/login');
             $this->load->view('templates/footer');
         }
     }
