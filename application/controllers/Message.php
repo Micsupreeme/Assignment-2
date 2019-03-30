@@ -30,24 +30,27 @@ class Message extends CI_Controller {
     }
 
     public function viewMessage($msgID){
-        if (!file_exists(APPPATH . 'views/message/viewmessage.php')) {
-            show_404();
-        }
-        $data['title'] = '';
-        $data['message'] = $this->Message_model->get_message($msgID);
+        if($this->isLoggedIn()){
+            if (!file_exists(APPPATH . 'views/message/viewmessage.php')) {
+                show_404();
+            }
+            $data['title'] = '';
+            $data['message'] = $this->Message_model->get_message($msgID);
 
-        if(empty($data['message'])){
-            $data['heading'] = 'Message Not Found. ';
-            $data['message'] = 'The message you are looking for is missing or belongs to someone else.';
+            if(empty($data['message'])){
+                $data['heading'] = 'Message Not Found. ';
+                $data['message'] = 'The message you are looking for is missing or belongs to someone else.';
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('/errors/cli/error_db', $data);
-            $this->load->view('templates/footer');
-        }else {
-            $this->load->view('templates/header', $data);
-            $this->load->view('/message/viewmessage', $data);
-            $this->load->view('templates/footer');
+                $this->load->view('templates/header', $data);
+                $this->load->view('/errors/cli/error_db', $data);
+                $this->load->view('templates/footer');
+            }else {
+                $this->load->view('templates/header', $data);
+                $this->load->view('/message/viewmessage', $data);
+                $this->load->view('templates/footer');
+            }
         }
+
     }
 
     public function newMessage(){
