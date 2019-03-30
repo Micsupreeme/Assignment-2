@@ -47,7 +47,7 @@ class User extends CI_Controller {
             $this->load->library('form_validation');
             $data['title'] = 'register';
             $this->form_validation->set_rules('taBio', 'Bio', 'required');
-            $this->form_validation->set_rules('radVisibility', 'Visbility', 'required');
+            $this->form_validation->set_rules('radVisibility', 'Visibility', 'required');
             $data['user_instance'] = $this->User_model->get_user($this->session->userdata('id'));
             $data['title'] = $data['user_instance']['usr_first_name'] . "'s Profile";
             $this->load->view('templates/header', $data);
