@@ -26,23 +26,20 @@
 			return $query->result_array(); //result_array can return multiple records
 		}
 
-        public function validateLogin($email, $password){
-            //$query = $this->db->get_where('user', array('usr_email' => $email) AND array('usr_my_key' => $password));
-            //return $query->row_array();
+        public function validateLogin($email, $password)
+        {
 
             $this->db->where('usr_email', $email);
             $this->db->where('usr_my_key', $password);
             $query = $this->db->get('user');
 
             return $query->row_array();
-
         }
-
         public function addUser(){
 
             $data = array(
                 'usr_email' => $this->input->post('userEmail'),
-                'usr_my_key' => $this->input->post('userPassword'),
+                'usr_my_key' => password_hash($this->input->post('userPassword'), PASSWORD_BCRYPT),
                 'usr_first_name' => $this->input->post('firstName'),
                 'usr_last_name' => $this->input->post('surname'),
                 'usr_auth_level' => $this->input->post('role'),
