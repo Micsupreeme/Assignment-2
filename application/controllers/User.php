@@ -111,28 +111,29 @@ class User extends CI_Controller {
             $password = $this->input->post('userPassword');
 
             $this->load->model('User_model');
+
             $data['currentUser'] = $this->User_model->validateLogin($email, $password);
 
             //$verifyPassword = password_verify($password, $data['currentUser']['usr_my_key']);
             //if ($verifyPassword) {
-                if (isset($data['currentUser']['usr_id'])) {
-                    $session_data = array(
-                        'id' => $data ['currentUser']['usr_id'],
-                        'emailAddress' => $data['currentUser']['usr_email'],
-                        'firstName' => $data['currentUser']['usr_first_name'],
-                        'lastName' => $data['currentUser']['usr_last_name'],
-                        'authLevel' => $data['currentUser']['usr_auth_level']
-                    );
+            if (isset($data['currentUser']['usr_id'])) {
+                $session_data = array(
+                    'id' => $data ['currentUser']['usr_id'],
+                    'emailAddress' => $data['currentUser']['usr_email'],
+                    'firstName' => $data['currentUser']['usr_first_name'],
+                    'lastName' => $data['currentUser']['usr_last_name'],
+                    'authLevel' => $data['currentUser']['usr_auth_level']
+                );
 
-                    $this->session->set_userdata($session_data);
-                    redirect(base_url() . 'user/profile/' . $this->session->userdata('id'));
+                $this->session->set_userdata($session_data);
+                redirect(base_url() . 'user/profile/' . $this->session->userdata('id'));
                 } else {
                     redirect(base_url() . 'user/login');
                 }
             } else {
                 $this->login();
             }
-        //}
+            //}
     }
 
     public function isLoggedIn(){

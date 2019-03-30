@@ -25,7 +25,7 @@ class Timeslot extends CI_Controller {
 		$data['lecturer'] = $this->User_model->get_user($this->session->userdata('id'));
 		$data['timeslot_instance'] = $this->Timeslot_model->get_my_timeslots($this->session->userdata('id'));
 		if (empty($data['timeslot_instance'])) {
-			show_404();
+			//show_404();
 		}
 		$data['title'] = $data['lecturer']['usr_first_name'] . ' '. $data['lecturer']['usr_last_name'] . "'s Timeslots";
 		$this->load->view('templates/header', $data);
