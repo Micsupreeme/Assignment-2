@@ -60,5 +60,21 @@
 
             return $query;
         }
-
+		
+		//Updates the assigned lecturer for a specified student to the currently logged-in lecturer
+		public function addStudent($studentId = FALSE){
+			
+			if ($studentId) {
+				$this->db->where('usr_id', $studentId);
+				$this->db->update('user', array('usr_assigned_lecturer_id' => $this->session->userdata('id')));
+			}
+        }
+		
+		//Deletes the specified user
+		public function deleteUser($userId = FALSE){
+			
+			if ($userId) {
+				$this->db->delete('user', array('usr_id' => $userId));
+			}
+        }
 	}

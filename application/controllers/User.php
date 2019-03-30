@@ -9,6 +9,16 @@ class User extends CI_Controller {
 	
 	public function addressbook(){
 		if($this->isLoggedIn()) {
+			//If an "Add Student" action is requested, verify authorisation level then perform the action
+			if(isset($_GET['addstudent']) && $this->session->userdata('authLevel') > 0) {
+				$this->User_model->addStudent($_GET['addstudent']);
+			}
+			
+			//If a "Delete User" action is requested, verify authorisation level then perform the action
+			if(isset($_GET['deleteuser']) && $this->session->userdata('authLevel') > 1) {
+				$this->User_model->deleteUser($_GET['deleteuser']);
+			}
+			
             $data['user_instance'] = $this->User_model->get_user();
             $data['title'] = 'Address Book';
             $this->load->view('templates/header', $data);

@@ -16,10 +16,10 @@ class Timeslot extends CI_Controller {
 	}
 	
 	//For the "My Timeslots" list
-	private function display()
-	{
-		if(isset($_GET['delete'])) {
-			$this->Timeslot_model->deleteTimeslot($_GET['delete']);
+	private function display() {
+		//If a "Delete Timeslot" action is requested, verify identity then perform the action
+		if(isset($_GET['deletetimeslot']) && $this->session->userdata('id') == $data['lecturer']['usr_id']) {
+			$this->Timeslot_model->deleteTimeslot($_GET['deletetimeslot']);
 		}
 		
 		$data['lecturer'] = $this->User_model->get_user($this->session->userdata('id'));
@@ -33,8 +33,7 @@ class Timeslot extends CI_Controller {
 	}
 	
 	//For the "Add Timeslot" form
-	private function add()
-	{		
+	private function add() {		
 		$this->load->helper('form');
         $this->load->library('form_validation');
 		
@@ -51,7 +50,7 @@ class Timeslot extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	
-	public function isLoggedIn(){
+	public function isLoggedIn() {
 	    if($this->session->userdata('emailAddress')!=''){
             return true;
         }
