@@ -62,9 +62,14 @@ class User extends CI_Controller {
 	
 	public function students(){
 		if($this->isLoggedIn()){
+			//If a "Remove Student" action is requested, verify authorisation level then perform the action
+			if(isset($_GET['removestudent']) && $this->session->userdata('authLevel') > 0) {
+				$this->User_model->removeStudent($_GET['removestudent']);
+			}
+			
 			$data['lecturer'] = $this->User_model->get_user($this->session->userdata('id'));
 			$data['user_instance'] = $this->User_model->get_student($this->session->userdata('id'));
-			if (empty($data['user_instance'])) {
+			if ($this->session->userdata('authLevel') == 0) {
 				show_404();
 			}
 			$data['title'] = 'Students Assigned to ' . $data['lecturer']['usr_first_name'] . ' ' . $data['lecturer']['usr_last_name'];

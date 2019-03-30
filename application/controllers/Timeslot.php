@@ -18,45 +18,47 @@ class Timeslot extends CI_Controller {
 	//For the "My Timeslots" list
 	private function display() {
 		//If a "Delete Timeslot" action is requested, verify identity then perform the action
-		if(isset($_GET['deletetimeslot']) && $this->session->userdata('id') == $data['lecturer']['usr_id']) {
+		if(isset($_GET['deletetimeslot']) && $this->session->userdata('authLevel') > 0) {
 			$this->Timeslot_model->deleteTimeslot($_GET['deletetimeslot']);
 		}
 		
 		$data['lecturer'] = $this->User_model->get_user($this->session->userdata('id'));
 		$data['timeslot_instance'] = $this->Timeslot_model->get_my_timeslots($this->session->userdata('id'));
-		if (empty($data['timeslot_instance'])) {
-			//show_404();
-		}
-		$data['title'] = $data['lecturer']['usr_first_name'] . ' '. $data['lecturer']['usr_last_name'] . "'s Timeslots";
-		$this->load->view('templates/header', $data);
-		$this->load->view('timeslot/mytimeslots', $data);
-	}
-	
-	//For the "Add Timeslot" form
-	private function add() {		
-		$this->load->helper('form');
+        if ($this->session->userdata('authLevel') == 0) {
+            show_404();
+        }
+        $data['title'] = $data['lecturer']['usr_first_name'] . ' '. $data['lecturer']['usr_last_name'] . "'s Timeslots";
+        $this->load->view('templates/header', $data);
+        $this->load->view('timeslot/mytimeslots', $data);
+    }
+
+    //For the "Add Timeslot" form
+    private function add() {
+        $this->load->helper('form');
         $this->load->library('form_validation');
-		
-		$data['lecturer'] = $this->User_model->get_user($this->session->userdata('id'));
+
+        $data['lecturer'] = $this->User_model->get_user($this->session->userdata('id'));
         $this->form_validation->set_rules('dateStart', 'Start Date/Time', 'required');
         $this->form_validation->set_rules('dateEnd', 'Start Date/Time', 'required');
         $this->form_validation->set_rules('txtLocation', 'Location', 'required');
-		
+
         if ($this->form_validation->run() === TRUE) {
             $this->Timeslot_model->addTimeslot($this->session->userdata('id'));
-			redirect(base_url() . 'timeslot/manage', 'refresh');
-        }	
-		$this->load->view('timeslot/addtimeslot', $data);
-		$this->load->view('templates/footer');
-	}
-	
-	public function isLoggedIn() {
-	    if($this->session->userdata('emailAddress')!=''){
+            redirect(base_url() . 'timeslot/manage', 'refresh');
+        }
+        $this->load->view('timeslot/addtimeslot', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function isLoggedIn() {
+        if($this->session->userdata('emailAddress')!=''){
             return true;
         }
-	    else{
-	        redirect(base_url().'user/login');
+        else{
+            redirect(base_url().'user/login');
             return false;
         }
     }
 }
+
+

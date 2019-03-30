@@ -62,10 +62,18 @@ class user_model extends CI_Model {
             $this->db->where('usr_id', $studentId);
             $this->db->update('user', array('usr_assigned_lecturer_id' => $this->session->userdata('id')));
         }
+
     }
 
+    public function removeStudent($studentId = FALSE){//Removes the assigned lecturer for a specified student
+
+        if ($studentId) {
+            $this->db->where('usr_id', $studentId);
+            $this->db->update('user', array('usr_assigned_lecturer_id' => 'DEFAULT'));
+        }
+    }
     //Deletes the specified user
-    public function deleteUser($userId = FALSE){
+    public function deleteUser($userId = FALSE) {
 
         if ($userId) {
             $this->db->delete('user', array('usr_id' => $userId));
