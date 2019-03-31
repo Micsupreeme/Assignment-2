@@ -62,7 +62,6 @@ class user_model extends CI_Model {
             $this->db->where('usr_id', $studentId);
             $this->db->update('user', array('usr_assigned_lecturer_id' => $this->session->userdata('id')));
         }
-
     }
 
     public function removeStudent($studentId = FALSE){//Removes the assigned lecturer for a specified student

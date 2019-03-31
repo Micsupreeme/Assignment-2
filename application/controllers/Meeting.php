@@ -64,8 +64,10 @@ class Meeting extends CI_Controller {
         $this->load->view('templates/header', $data);
 		
 		$this->load->view('meeting/timeslotselection', $data);
-		if(isset($_GET['selecttimeslot']) && $this->session->userdata('authLevel') == 0) { //A meeting can only be arranged once a timeslot is selected
-			//LECTURER ARRANGING MEETING WITH STUDENT IS NOT YET IMPLEMENTED
+		//For a student to arrange a meeting with a lecturer, they only need to specify their selected timeslot, the student will be themselves and the lecturer will be their assigned lecturer
+		//For a lecturer to arrange a meeting with a student, they need to specify both their selected timeslot and their selected student, the student will be the selected student and the lecturer will be themselves
+		if((isset($_GET['selecttimeslot']) && $this->session->userdata('authLevel') == 0) || (isset($_GET['selecttimeslot']) && isset($_GET['selectstudent']) && $this->session->userdata('authLevel') > 0)) {
+
 			$this->load->helper('form');
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('timeslotId', 'Timeslot ID', 'required');
@@ -75,7 +77,8 @@ class Meeting extends CI_Controller {
 			
 			if ($this->form_validation->run() === TRUE) {
 				$this->Meeting_model->addMeeting();
-				//redirect(base_url() . 'timeslot/manage', 'refresh');
+				$this->Timeslot_model->bookTimeslot();
+				redirect(base_url() . 'index.php/meeting/arrange', 'refresh');
 			}
 		
 			$this->load->view('meeting/arrangemeeting', $data);

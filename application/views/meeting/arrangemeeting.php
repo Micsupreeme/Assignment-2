@@ -1,5 +1,4 @@
 <form name="addMeet" method="post" action="">
-	<h1>Arrange Meeting</h1>
 	<p>Title <input type="text" name="title"></p>
 	<p>Timeslot <input readonly type="text" name="timeslotId" value="<?php echo $_GET['selecttimeslot']; ?>"></p>
 	<p>Lecturer <input readonly type="text" name="lecturerId" value="<?php echo $lecturer['usr_id']; ?>"></p>

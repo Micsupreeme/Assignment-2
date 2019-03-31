@@ -36,6 +36,13 @@
             $this->db->insert('timeslot', $addParameters);
         }
 		
+		//Updates the booked state for a timeslot specified by POST data
+		public function bookTimeslot(){
+
+			$this->db->where('tsl_id', $this->input->post('timeslotId'));
+			$this->db->update('timeslot', array('tsl_booked' => 1));
+		}
+		
 		//Deletes a specified timeslot from the database
 		public function deleteTimeslot($timeslotId = FALSE){
 			
