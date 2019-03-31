@@ -1,0 +1,108 @@
+body
+{
+    background-color: grey;
+}
+
+* {
+    font-family: Arial;
+}
+
+h1
+{
+    color: black;
+    text-align: left;
+    font-size: 150%;
+}
+
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: grey;
+    text-align: justify;
+    padding: 14px 32px;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: blue;
+    color: black;
+}
+
+.topnav a.active {
+    background-color: slategrey;
+    color: white;
+}
+
+a:link
+{
+    color: green;
+    text-decoration: underline;
+}
+
+a:visited
+{
+    color: blue;
+    text-decoration: underline;
+}
+
+a:hover
+{
+    color: black;
+    text-decoration: underline;
+}
+
+a:active
+{
+    color: blue;
+    text-decoration: underline;
+}
+
+.topnav-right {
+    float: right;
+}
+
+.topnav a {
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+.side-by-side
+{
+    float: left;
+    padding:0px 20px;
+    background-color: DimGrey;
+    border-width:2px;
+    border-style:solid;
+    border-color:black
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout:fixed;
+}
+
+td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+th{
+    border: 3px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+deleted
+{
+    position:absolute;
+    top:0px;
+}
+
