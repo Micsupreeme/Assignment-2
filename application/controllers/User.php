@@ -55,7 +55,7 @@ class User extends CI_Controller {
             $this->load->view('templates/footer');
             if ($this->form_validation->run() === TRUE) {
                 $this->User_model->editProfile();
-                redirect(base_url('user/profile/') . $this->session->userdata('id'));
+                redirect(base_url('index.php/user/profile/') . $this->session->userdata('id'));
             }
         }
     }
@@ -94,13 +94,11 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('userPassword', 'Password', 'required');
         $this->form_validation->set_rules('role', 'Role', 'required');
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('user/register');
+            $this->load->view('user/register', $data);
             $this->load->view('templates/footer');
         } else {
             $this->User_model->addUser();
-            $this->load->view('templates/header', $data);
-            $this->load->view('user/registerSuccess');
+            $this->load->view('user/registerSuccess', $data);
             $this->load->view('user/login');
             $this->load->view('templates/footer');
         }
@@ -131,9 +129,9 @@ class User extends CI_Controller {
                 );
 
                 $this->session->set_userdata($session_data);
-                redirect(base_url() . 'user/profile/' . $this->session->userdata('id'));
+                redirect(base_url() . 'index.php/user/profile/' . $this->session->userdata('id'));
                 } else {
-                    redirect(base_url() . 'user/login');
+                    redirect(base_url() . 'index.php/user/login');
                 }
             } else {
                 $this->login();
@@ -146,7 +144,7 @@ class User extends CI_Controller {
             return true;
         }
 	    else{
-	        redirect(base_url().'user/login');
+	        redirect(base_url().'index.php/user/login');
             return false;
         }
     }
@@ -154,7 +152,7 @@ class User extends CI_Controller {
     public function logout(){
 	    $this->session->unset_userdata('emailAddress', 'authLevel');
 	    $this->session->sess_destroy();
-	    redirect(base_url() . 'user/login');
+	    redirect(base_url() . 'index.php/user/login');
     }
 
 }

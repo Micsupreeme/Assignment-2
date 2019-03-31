@@ -1,9 +1,8 @@
 <h1>My Timeslots</h1>
 <?php 
 	if(empty($timeslot_instance)) {
-		echo '<p><a href="' . base_url('user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . '</a> has no outstanding timeslots.</p>';
-	} else {
-		echo '<p>Browse <a href="' . base_url('user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . "</a>'s timeslots:</p>";
+		echo '<p><a href="' . base_url('index.php/user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . '</a> has no outstanding timeslots.</p>';	} else {
+		echo '<p>Browse <a href="' . base_url('index.php/user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . "</a>'s timeslots:</p>";
 		echo '<table><tr><td>Timeslot</td><td></td></tr>';
 	}
 ?>
