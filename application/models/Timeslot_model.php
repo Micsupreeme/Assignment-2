@@ -6,7 +6,6 @@
 			$this->load->database();
 		}
 		
-		//We might not need this function
 		public function get_timeslot($timeslotId = FALSE){
 			if ($timeslotId === FALSE) {
 				$query = $this->db->get('timeslot'); //No ID specified, get all timeslots
@@ -21,7 +20,7 @@
 				$query = $this->db->get('timeslot'); //No ID specified, get all timeslots
 				return $query->result_array();
 			}
-			$query = $this->db->get_where('timeslot', array('tsl_lecturer_id' => $lecturerId)); //lecturer ID specified, get timeslots for that lecturer
+			$query = $this->db->get_where('timeslot', array('tsl_lecturer_id' => $lecturerId, 'tsl_booked' => 0)); //lecturer ID specified, get unbooked timeslots for that lecturer
 			return $query->result_array();
 		}
 		
