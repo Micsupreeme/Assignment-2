@@ -96,7 +96,7 @@ class Message extends CI_Controller {
             return true;
         }
         else{
-            redirect(base_url().'user/login');
+            redirect(base_url().'index.php/user/login');
             return false;
         }
     }

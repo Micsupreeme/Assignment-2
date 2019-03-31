@@ -26,7 +26,7 @@
 				break;
 		}
 		?></td>
-		<td><?php echo '<a href="' . base_url('user/profile/' . $user['usr_id']) . '">' . $user['usr_last_name'] . ', ' . $user['usr_first_name'] . '</a>'; ?></td>
+		<td><?php echo '<a href="' . base_url('index.php/user/profile/' . $user['usr_id']) . '">' . $user['usr_last_name'] . ', ' . $user['usr_first_name'] . '</a>'; ?></td>
 		
 		<?php 
 			//The "Message" action can be performed by anyone on anyone except themselves
