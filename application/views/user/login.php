@@ -3,6 +3,8 @@
 </head>
 <body>
 <form method="post" action="<?php echo base_url('index.php/user/validate_login');?>">
+    <b><p class="logo"> UniBird</p></b>
+    <br><p class="intro">Your Academic Meeting and Messaging Network</p>
     <label><b>Email Address:</b></label>
         <input type="email" placeholder="Enter your Email" name="userEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
     <label><b>Password:</b></label>
