@@ -1,4 +1,5 @@
 <h1><?php echo $user_instance['usr_first_name']; ?>'s Profile</h1>
+<img src="<?php echo base_url('images/profile_pic.png'); ?>" /> <br>
 <?php if ('/Assignment-2/index.php/user/profile/' . $this->session->userdata('id')==($_SERVER['REQUEST_URI'])){
     echo '<a href=" ' . base_url('index.php/user/editprofile') . ' ">Edit Profile</a><br>';
 }?>
@@ -38,7 +39,7 @@
 			}
 		}
 		
-		echo '<label>Bio:</label><br>
-		<textarea readonly rows="4" cols="50">' . $user_instance['usr_bio'] . '</textarea>';
+		echo '<br><label>Bio:</label>
+		<p class="bioParagraph">' . $user_instance['usr_bio'] . '</p>';
 	}
 ?>
