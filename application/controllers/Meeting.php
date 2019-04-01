@@ -12,24 +12,26 @@ class Meeting extends CI_Controller {
 	
 	//For viewing meetings
 	public function display() {
-		//If a "Delete Meeting" action is requested then perform the action
-		if(isset($_GET['deletemeeting'])) {
-			$this->Meeting_model->deleteMeeting($_GET['deletemeeting']);
+		if($this->isLoggedIn()){
+			//If a "Delete Meeting" action is requested then perform the action
+			if(isset($_GET['deletemeeting'])) {
+				$this->Meeting_model->deleteMeeting($_GET['deletemeeting']);
+			}
+			
+			$data['current_user'] = $this->User_model->get_user($this->session->userdata('id'));
+			$data['meeting_instance'] = $this->Meeting_model->get_my_meetings($this->session->userdata('id'));
+			
+			$data['title'] = $data['current_user']['usr_first_name'] . ' '. $data['current_user']['usr_last_name'] . "'s Meetings";
+			$this->load->view('templates/header', $data);
+			
+			$this->load->view('meeting/meetingsheader', $data);
+			foreach ($data['meeting_instance'] as $meeting):
+				$this->displayIndividual($meeting['met_id'], $data);
+			endforeach;
+			$this->load->view('meeting/meetingsfooter');
+			
+			$this->load->view('templates/footer');
 		}
-		
-		$data['current_user'] = $this->User_model->get_user($this->session->userdata('id'));
-		$data['meeting_instance'] = $this->Meeting_model->get_my_meetings($this->session->userdata('id'));
-		
-		$data['title'] = $data['current_user']['usr_first_name'] . ' '. $data['current_user']['usr_last_name'] . "'s Meetings";
-		$this->load->view('templates/header', $data);
-		
-		$this->load->view('meeting/meetingsheader', $data);
-		foreach ($data['meeting_instance'] as $meeting):
-			$this->displayIndividual($meeting['met_id'], $data);
-		endforeach;
-		$this->load->view('meeting/meetingsfooter');
-		
-		$this->load->view('templates/footer');
     }
 	
 	private function displayIndividual($meetingId, $data) {
@@ -45,46 +47,53 @@ class Meeting extends CI_Controller {
 
     //For arranging meetings
     public function arrange() {
-		
-		$data['current_user'] = $this->User_model->get_user($this->session->userdata('id'));
-		if($this->session->userdata('authLevel') > 0) {
-			//Current user is a lecturer - get their timeslots
-			$data['lecturer'] = $this->User_model->get_user($data['current_user']['usr_id']);
-			$data['timeslot_instance'] = $this->Timeslot_model->get_my_timeslots($data['current_user']['usr_id']);
-		} else {
-			//Current user is a student - get their assigned lecturer's timeslots
-			if(!empty($data['current_user']['usr_assigned_lecturer_id'])) { //We can only get the assigned lecturer's timeslots if they have an assigned lecturer
-				$data['student'] = $this->User_model->get_user($data['current_user']['usr_id']);
-				$data['lecturer'] = $this->User_model->get_user($data['current_user']['usr_assigned_lecturer_id']);
-				$data['timeslot_instance'] = $this->Timeslot_model->get_my_timeslots($data['current_user']['usr_assigned_lecturer_id']);
+		if($this->isLoggedIn()) {
+			$data['current_user'] = $this->User_model->get_user($this->session->userdata('id'));
+			if($this->session->userdata('authLevel') > 0) {
+				//Current user is a lecturer - get their timeslots
+				$data['lecturer'] = $this->User_model->get_user($data['current_user']['usr_id']);
+				$data['timeslot_instance'] = $this->Timeslot_model->get_my_timeslots($data['current_user']['usr_id']);
+			} else {
+				//Current user is a student - get their assigned lecturer's timeslots
+				if(!empty($data['current_user']['usr_assigned_lecturer_id'])) { //We can only get the assigned lecturer's timeslots if they have an assigned lecturer
+					$data['student'] = $this->User_model->get_user($data['current_user']['usr_id']);
+					$data['lecturer'] = $this->User_model->get_user($data['current_user']['usr_assigned_lecturer_id']);
+					$data['timeslot_instance'] = $this->Timeslot_model->get_my_timeslots($data['current_user']['usr_assigned_lecturer_id']);
+				}
 			}
-		}
-	
-        $data['title'] = "Arrange Meeting";
-        $this->load->view('templates/header', $data);
 		
-		$this->load->view('meeting/timeslotselection', $data);
-		//For a student to arrange a meeting with a lecturer, they only need to specify their selected timeslot, the student will be themselves and the lecturer will be their assigned lecturer
-		//For a lecturer to arrange a meeting with a student, they need to specify both their selected timeslot and their selected student, the student will be the selected student and the lecturer will be themselves
-		if((isset($_GET['selecttimeslot']) && $this->session->userdata('authLevel') == 0) || (isset($_GET['selecttimeslot']) && isset($_GET['selectstudent']) && $this->session->userdata('authLevel') > 0)) {
-
-			$this->load->helper('form');
-			$this->load->library('form_validation');
-			$this->form_validation->set_rules('timeslotId', 'Timeslot ID', 'required');
-			$this->form_validation->set_rules('title', 'Title', 'required');
-			$this->form_validation->set_rules('lecturerId', 'Lecturer ID', 'required');
-			$this->form_validation->set_rules('studentId', 'Student ID', 'required');
+			$data['title'] = "Arrange Meeting";
+			$this->load->view('templates/header', $data);
 			
-			if ($this->form_validation->run() === TRUE) {
-				$this->Meeting_model->addMeeting();
-				$this->Timeslot_model->bookTimeslot();
-				redirect(base_url() . 'index.php/meeting/arrange', 'refresh');
+			$this->load->view('meeting/timeslotselection', $data);
+			if($this->session->userdata('authLevel') > 0 && isset($_GET['selecttimeslot'])) {
+				$data['selecttimeslot'] =  $_GET['selecttimeslot'];
+				$data['student_instance'] = $this->User_model->get_student($data['lecturer']['usr_id']);
+				$this->load->view('meeting/studentselection', $data);
 			}
-		
-			$this->load->view('meeting/arrangemeeting', $data);
+
+			//For a student to arrange a meeting with a lecturer, they only need to specify their selected timeslot, the student will be themselves and the lecturer will be their assigned lecturer
+			//For a lecturer to arrange a meeting with a student, they need to specify both their selected timeslot and their selected student, the student will be the selected student and the lecturer will be themselves
+			if((isset($_GET['selecttimeslot']) && $this->session->userdata('authLevel') == 0) || (isset($_GET['selecttimeslot']) && isset($_GET['selectstudent']) && $this->session->userdata('authLevel') > 0)) {
+
+				$this->load->helper('form');
+				$this->load->library('form_validation');
+				$this->form_validation->set_rules('timeslotId', 'Timeslot ID', 'required');
+				$this->form_validation->set_rules('title', 'Title', 'required');
+				$this->form_validation->set_rules('lecturerId', 'Lecturer ID', 'required');
+				$this->form_validation->set_rules('studentId', 'Student ID', 'required');
+				
+				if ($this->form_validation->run() === TRUE) {
+					$this->Meeting_model->addMeeting();
+					$this->Timeslot_model->bookTimeslot();
+					redirect(base_url() . 'index.php/meeting/arrange', 'refresh');
+				}
+			
+				$this->load->view('meeting/arrangemeeting', $data);
+			}
+				
+			$this->load->view('templates/footer');
 		}
-        	
-		$this->load->view('templates/footer');
     }
 
     public function isLoggedIn() {

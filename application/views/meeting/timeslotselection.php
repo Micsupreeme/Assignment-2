@@ -1,9 +1,17 @@
 <h1>Arrange Meeting</h1>
 <?php
 	if(empty($timeslot_instance)) {
-		echo '<p><a href="' . base_url('index.php/user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . '</a> has no outstanding timeslots.</p>';
+		if($this->session->userdata('authLevel') == 0) {
+			echo '<p>Unfortunately, you cannot arrange a meeting because your assigned lecturer <a href="' . base_url('index.php/user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . '</a> has no available timeslots.</p>';
+		} else {
+			echo '<p>Unfortunately, you cannot arrange a meeting because you have no available timeslots.</p>';
+		}
 	} else {
-		echo '<p>Browse <a href="' . base_url('index.php/user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . "</a>'s timeslots:</p>";
+		if($this->session->userdata('authLevel') == 0) {
+			echo '<p>Select one of your assigned lecturer <a href="' . base_url('index.php/user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . "</a>'s available timeslots to arrange a meeting with them:</p>";
+		} else {
+			echo '<p>Select one of your available timeslots to arrange a meeting with an assigned student:</p>';
+		}
 		echo '<table><tr><td>Timeslot</td><td></td></tr>';
 		
 		foreach ($timeslot_instance as $timeslot):

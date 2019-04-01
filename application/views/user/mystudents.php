@@ -1,9 +1,9 @@
 <h1>My Students</h1>
 <?php 
 	if(empty($user_instance)) {
-		echo '<p>There are no students assigned to <a href="' . base_url('index.php/user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . '</a>.</p>';
+		echo '<p>There are no students assigned to you.</p>';
 	} else {
-		echo '<p>Browse students assigned to <a href="' . base_url('index.php/user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . '</a>:</p>';
+		echo '<p>Browse students assigned to you:</p>';
 		echo '<table><tr><td>Name</td><td></td></tr>';
 	}
 ?>

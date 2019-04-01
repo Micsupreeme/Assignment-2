@@ -1,5 +1,5 @@
 <a href="<?php echo  base_url('index.php/message/newmessage/') ?>">New Message</a> <br>
-<h1><?php echo $this->session->userdata('firstName')?>'s Messages</h1>
+<h1>Messages</h1>
 
 <?php if ($query->num_rows() > 0){ ?>
 <table>
