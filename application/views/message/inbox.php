@@ -1,6 +1,5 @@
-<a href="<?php echo  base_url('index.php/message/newmessage/') ?>">New Message</a> <br>
 <h1>Messages</h1>
-
+<a href="<?php echo  base_url('index.php/message/newmessage/') ?>">New Message</a> <br>
 <?php if ($query->num_rows() > 0){ ?>
 <table>
     <thead>

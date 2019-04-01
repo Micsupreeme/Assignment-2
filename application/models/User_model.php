@@ -86,4 +86,13 @@ class user_model extends CI_Model {
         if ($query->num_rows() > 0){return true;}
         return false;
     }
+
+    public function get_by_email($userEmail){
+       $query = $this->db->get_where('user', array ('usr_email' => $userEmail));
+
+       if($query->num_rows() > 0){
+           $user = $query->row_array();
+           return $user;
+       }
+    }
 }

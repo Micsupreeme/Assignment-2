@@ -2,7 +2,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/style.css')?>"/>
 </head>
 <body>
-<form method="post" action="<?php echo base_url('index.php/user/validate_login');?>">
+<form method="post" action="">
     <b><p class="logo"> UniBird</p></b>
     <br><p class="intro">Your Academic Meeting and Messaging Network</p>
     <label><b>Email Address:</b></label>

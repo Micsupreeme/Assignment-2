@@ -81,7 +81,47 @@ class User extends CI_Controller {
 
     public function login(){
 	    $data['title'] = 'Login';
-	    $this->load->view("user/login", $data);
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('userEmail', 'Email', 'required');
+        $this->form_validation->set_rules('userPassword', 'Password', 'required');
+
+        if($this->form_validation->run()) {
+            $email = $this->input->post('userEmail');
+            $password = $this->input->post('userPassword');
+
+            $result = $this->User_model->get_by_email($email);
+
+            if (! empty($result)){ //if input email is correct
+                if (password_verify($password, $result['usr_my_key'])){ //check password
+                    $session_data = array(
+                        'id' => $result['usr_id'],
+                        'emailAddress' => $result['usr_email'],
+                        'firstName' => $result['usr_first_name'],
+                        'lastName' => $result['usr_last_name'],
+                        'authLevel' => $result['usr_auth_level']
+                    );
+
+                    $this->session->set_userdata($session_data);
+                    redirect(base_url() . 'index.php/user/profile/' . $this->session->userdata('id'));
+                }else {//wrong password
+                    $data['heading'] = 'Login Error: ';
+                    $data['message'] = 'Incorrect Password';
+
+                    $this->load->view('/errors/cli/error_db', $data);
+                    $this->load->view("user/login", $data);
+                }
+            } else {//wrong email
+                $data['heading'] = 'Login Error: ';
+                $data['message'] = 'Incorrect Email';
+
+                $this->load->view('/errors/cli/error_db', $data);
+                $this->load->view("user/login", $data);
+            }
+
+        } else {//form not submit
+            $this->load->view("user/login", $data);
+        }
     }
 
     public function registerUser(){
@@ -99,44 +139,8 @@ class User extends CI_Controller {
         } else {
             $this->User_model->addUser();
             $this->load->view('user/registerSuccess', $data);
-            $this->load->view('user/login');
-            $this->load->view('templates/footer');
+            $this->login();
         }
-    }
-
-    public function validate_login(){
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('userEmail', 'Email', 'required');
-        $this->form_validation->set_rules('userPassword', 'Password', 'required');
-
-        if($this->form_validation->run()) {
-            $email = $this->input->post('userEmail');
-            $password = $this->input->post('userPassword');
-
-            $this->load->model('User_model');
-
-            $data['currentUser'] = $this->User_model->validateLogin($email, $password);
-
-            //$verifyPassword = password_verify($password, $data['currentUser']['usr_my_key']);
-            //if ($verifyPassword) {
-            if (isset($data['currentUser']['usr_id'])) {
-                $session_data = array(
-                    'id' => $data ['currentUser']['usr_id'],
-                    'emailAddress' => $data['currentUser']['usr_email'],
-                    'firstName' => $data['currentUser']['usr_first_name'],
-                    'lastName' => $data['currentUser']['usr_last_name'],
-                    'authLevel' => $data['currentUser']['usr_auth_level']
-                );
-
-                $this->session->set_userdata($session_data);
-                redirect(base_url() . 'index.php/user/profile/' . $this->session->userdata('id'));
-                } else {
-                    redirect(base_url() . 'index.php/user/login');
-                }
-            } else {
-                $this->login();
-            }
-            //}
     }
 
     public function isLoggedIn(){
