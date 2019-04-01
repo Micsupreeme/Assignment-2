@@ -109,7 +109,7 @@ deleted
 
 form {border: 3px solid #f1f1f1;}
 
-input[type=email], input[type=password] {
+.loginFields {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -117,6 +117,8 @@ input[type=email], input[type=password] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
+
 
 button {
     background-color: black;

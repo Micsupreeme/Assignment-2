@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/style.css')?>"/>
+</head>
+<body>
 <form method="post" action = "<?php echo base_url('index.php/user/registerUser');?>">
     <label>Email Address:</label>
     <input type="email" placeholder="Enter your Email" name="userEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
@@ -13,3 +17,4 @@
     <input name="submit" type="submit" id="Submit" value="Submit">
     <input name="clear" type="submit" id="clear" value="Clear Form">
 </form>
+</body>
