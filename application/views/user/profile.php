@@ -1,5 +1,19 @@
 <h1><?php echo $user_instance['usr_first_name']; ?>'s Profile</h1>
-<img src="<?php echo base_url('images/profile_pic.png'); ?>" /> <br>
+<img src="<?php
+switch ($user_instance['usr_auth_level']) {
+	case 0:
+		echo base_url('images/student_pic.png');
+		break;
+	case 1:
+		echo base_url('images/lecturer_pic.png');
+		break;
+	case 2:
+		echo base_url('images/administrator_pic.png');
+		break;
+	default:
+		echo base_url('images/student_pic.png');
+		break;
+}?>"/><br>
 <?php if ('/Assignment-2/index.php/user/profile/' . $this->session->userdata('id')==($_SERVER['REQUEST_URI'])){
     echo '<a href=" ' . base_url('index.php/user/editprofile') . ' ">Edit Profile</a><br>';
 }?>
@@ -18,8 +32,7 @@
         default:
             echo "Student";
             break;
-    }
-    ?></label><br>
+    }?></label><br>
 <?php
 	/*E-mail address, Assigned Lecturer and Bio are protected by profile visibility settings.
 	There are 3 cases when you can view this data:
