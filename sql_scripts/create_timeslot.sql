@@ -6,5 +6,5 @@ CREATE TABLE `timeslot` (
   `tsl_booked` tinyint(1) NOT NULL DEFAULT '0',
   `tsl_location` varchar(100) NOT NULL,
   PRIMARY KEY (`tsl_id`),
-  UNIQUE KEY `tsl_id_UNIQUE` (`tsl_id`)
+  UNIQUE KEY `id_UNIQUE` (`tsl_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

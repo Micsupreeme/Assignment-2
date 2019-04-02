@@ -1,3 +1,7 @@
-INSERT INTO user VALUES(DEFAULT, '15473@uni.ac.uk', 'Wooper345', 'George', 'Camber', 'Hi there!', 2, 0, 0);
-INSERT INTO user VALUES(DEFAULT, 'jkitts@uni.ac.uk', 'java5Dude', 'John', 'Kitts', 'Hi there!', NULL, 1, 0);
-INSERT INTO user VALUES(DEFAULT, 'nfrost@uni.ac.uk', 'frosty05!6', 'Nick', 'Frost', 'Hi there!', NULL, 2, 0);
+INSERT INTO user VALUES(1, "sandrewmoore@uni.ac.uk", "$2y$10$/79rg6hm3pA5VK4416RloufmuPj7CNTqtA6HaOEkHyPmqbyycruhO", "Andrew", "Moore", "Hey!", 2, 0, 1);
+INSERT INTO user VALUES(2, "amathis@uni.ac.uk", "$2y$10$A0T.uIw.JNvnf1ChY/wCxedZ6Y/ht.RfSKkVWBjnbgtDAFLgR74ri", "Amy", "Mathis", "Hello, I am the Programme Leader for Computing courses!", NULL, 1, 0);
+INSERT INTO user VALUES(3, "nfrost@uni.ac.uk", "$2y$10$9.WFQrhnvFVDELLlQKcS6.bYWdC/oXUp/.8YHMlF.bAOqUfvI4OU6", "Nick", "Frost", "'Be yourself; everyone else is already taken.' -Oscar Wilde", NULL, 2, 0);
+INSERT INTO user VALUES(4, "scourtneymarsh@uni.ac.uk", "$2y$10$KL95JDeD/iVLPww29Owwx.IY54QfRAWWvEcJDb4hTT/O194tECCxO", "Courtney", "Marsh", "I am studing BSc (Hons) Software Enginnering.", 2, 0, 0);
+INSERT INTO user VALUES(5, "slukewilson@uni.ac.uk", "$2y$10$Oe8ohooaDikzUgmo3mQOx.colIrPDqHDadd7BPBFgUQ6KoYojU/AS", "Luke", "Wilson", "Film student", 6, 0, 1);
+INSERT INTO user VALUES(6, "kwest@uni.ac.uk", "$2y$10$f5SKZd5PXiHTl96EH6TXkusTl/Jjh0Fdaofo/TsYbs4uBhKJMIUAO", "Kevin", "West", "Film Production and Cinematography lecturer", NULL, 1, 0);
+INSERT INTO user VALUES(7, "sdanreed@uni.ac.uk", "$2y$10$xPq6HesDTooM6j8nNShHaeGBVIg5Z6VPHPHrJcVVMVY.xgSMEddMq", "Dan", "Reed", NULL, NULL, 0, 0);

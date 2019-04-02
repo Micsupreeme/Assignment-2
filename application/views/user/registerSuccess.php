@@ -1,1 +1,0 @@
-Your details have been successfully registered, please login below to edit your profile:

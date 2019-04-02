@@ -138,7 +138,7 @@ class User extends CI_Controller {
             $this->load->view('templates/footer');
         } else {
             $this->User_model->addUser();
-            $this->load->view('user/registerSuccess', $data);
+            $this->load->view('user/registersuccess', $data);
             $this->login();
         }
     }
