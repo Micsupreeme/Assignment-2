@@ -4,7 +4,7 @@
 		if($this->session->userdata('authLevel') == 0) {
 			echo '<p>Unfortunately, you cannot arrange a meeting because your assigned lecturer <a href="' . base_url('index.php/user/profile/' . $lecturer['usr_id']) . '">' . $lecturer['usr_first_name'] . ' ' . $lecturer['usr_last_name'] . '</a> has no available timeslots.</p>';
 		} else {
-			echo '<p>Unfortunately, you cannot arrange a meeting because you have no available timeslots.</p>';
+			echo '<p>Unfortunately, you cannot arrange a meeting because you have no available timeslots. Please follow the My Timeslots link above to add new timeslots</p>';
 		}
 	} else {
 		if($this->session->userdata('authLevel') == 0) {
