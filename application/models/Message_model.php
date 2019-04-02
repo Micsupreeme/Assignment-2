@@ -39,4 +39,27 @@ class Message_model extends CI_Model {
         );
         $this->db->insert('message', $data);
     }
+
+    public function create_announcement(){
+        $data = array(
+            'msg_author' => $this->session->userdata('emailAddress'),
+            'msg_subject' => $this->input->post('annSubject'),
+            'msg_recipient' => 'announcement',
+            'msg_date' => date('Y-m-d H:i:s'),
+            'msg_body' => $this->input->post('annTxtArea'),
+        );
+        $this->db->insert('message', $data);
+    }
+
+    public function get_announcements(){
+        //get where recipient = announcement and where author = my assigned lecturer
+        $this->db->where('msg_recipient', 'announcement');
+        $this->db->where('msg_author', ''); //session would make this easier
+        $query = $this->db->get('message');
+        return $query;
+    }
+
+    //get specific announcement
+
+    //get authored announcements | for my announcements page
 }

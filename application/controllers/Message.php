@@ -7,13 +7,13 @@ class Message extends CI_Controller {
         $this->load->helper('url_helper');
         $this->load->model('Message_model');
         $this->load->model('User_model');
+        $this->load->library('form_validation');
     }
 
     public function inbox (){
         if($this->isLoggedIn()) {
 
             if (!file_exists(APPPATH . 'views/message/inbox.php')) {
-                // Whoops, we don't have a page for that!
                 show_404();
             }
 
@@ -22,7 +22,9 @@ class Message extends CI_Controller {
             }
 
             $data['title'] = ucfirst('inbox');
-            $data['query'] = $this->Message_model->get_messages();
+            $data['messages'] = $this->Message_model->get_messages();
+            $data['announcements'] = $this->Message_model->get_announcements();
+
             $this->load->view('templates/header', $data);
             $this->load->view('/message/inbox', $data);
             $this->load->view('templates/footer', $data);
@@ -76,7 +78,7 @@ class Message extends CI_Controller {
                 $this->Message_model->create_message();
 
                 $this->load->view('templates/header', $data);
-                $this->load->view('/message/messagesent');
+                $this->load->view('/message/messagesent'); //TODO: change to success message
                 $this->load->view('/message/newmessage');
                 $this->load->view('templates/footer');
             }else{
@@ -86,6 +88,39 @@ class Message extends CI_Controller {
                 $this->load->view('templates/header', $data);
                 $this->load->view('/errors/cli/error_db', $data);
                 $this->load->view('/message/newmessage');
+                $this->load->view('templates/footer');
+            }
+        }
+    }
+    public function myAnnouncements(){
+        if($this->isLoggedIn() && $this->session->userdata('authLevel') > 0) {
+            if (!file_exists(APPPATH . 'views/message/myannouncements.php')) {
+                show_404();
+            }
+        }
+    }
+    public function createAnnouncement(){
+        if($this->isLoggedIn() && $this->session->userdata('authLevel') > 0) {
+
+            if (!file_exists(APPPATH . 'views/message/createannouncement.php')) {
+                show_404();
+            }
+
+            $this->form_validation->set_rules('annSubject', 'Subject', 'required');
+            $this->form_validation->set_rules('annTxtArea', 'TextArea', 'required');
+
+            $data['title'] = 'New Announcement';
+
+            if($this->form_validation->run()){
+                $this->Message_model->create_announcement();
+
+                $this->load->view('templates/header', $data);
+                $this->load->view('/message/messagesent'); //TODO: change to success message
+                $this->load->view('/message/newannouncement');
+                $this->load->view('templates/footer');
+            } else {
+                $this->load->view('templates/header', $data);
+                $this->load->view('/message/newannouncement');
                 $this->load->view('templates/footer');
             }
         }
