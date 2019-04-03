@@ -14,7 +14,7 @@ switch ($user_instance['usr_auth_level']) {
 		echo base_url('images/student_pic.png');
 		break;
 }?>"/><br>
-<?php if ('/Assignment-2/index.php/user/profile/' . $this->session->userdata('id')==($_SERVER['REQUEST_URI'])){
+<?php if ('/Assignment-2/user/profile/' . $this->session->userdata('id')==($_SERVER['REQUEST_URI'])){
     echo '<a href=" ' . base_url('user/editprofile') . ' ">Edit Profile</a><br>';
 }?>
 <label>Name: <?php echo $user_instance['usr_first_name'] . ' ' . $user_instance['usr_last_name']; ?> </label><br>
