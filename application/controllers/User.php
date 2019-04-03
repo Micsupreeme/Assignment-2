@@ -134,7 +134,7 @@ class User extends CI_Controller {
     public function registerUser(){
         $this->load->helper('form');
         $this->load->library('form_validation');
-        $data['title'] = 'register';
+        $data['title'] = 'Register';
         $this->form_validation->set_rules('userEmail', 'Email', 'required');
         $this->form_validation->set_rules('firstName', 'FirstName', 'required');
         $this->form_validation->set_rules('surname', 'Surname', 'required');

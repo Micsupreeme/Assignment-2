@@ -1,7 +1,11 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/style.css')?>"/>
+    <title><?php echo $title; ?></title>
 </head>
 <body>
+    <div class="logo"><a href="<?php echo base_url('user/profile/' . $this->session->userdata('id'));?>">
+            <b class="logo">UniBird</b></a></div>
+    <br><p class="intro">Your Academic Meeting and Messaging Network</p>
 <form method="post" action = "">
     <label>Email Address:</label>
     <input type="email" placeholder="Enter your Email" name="userEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>

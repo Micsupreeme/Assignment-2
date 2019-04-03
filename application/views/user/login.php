@@ -1,8 +1,10 @@
 <head>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/style.css')?>"/>
+    <title><?php echo $title; ?></title>
 </head>
 <body>
-    <b><p class="logo"> UniBird</p></b>
+    <div class="logo"><a href="<?php echo base_url('user/profile/' . $this->session->userdata('id'));?>">
+            <b class="logo">UniBird</b></a></div>
     <br><p class="intro">Your Academic Meeting and Messaging Network</p>
 <form method="post" action="">
     <label><b>Email Address:</b></label>
