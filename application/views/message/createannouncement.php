@@ -7,3 +7,4 @@
     <input type="submit" name="annSubmit" value="Submit">
     <input type="reset" name="annClear" value="Clear">
 </form>
+<?php echo validation_errors(); ?>
