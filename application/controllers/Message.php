@@ -65,15 +65,20 @@ class Message extends CI_Controller {
             if (!file_exists(APPPATH . 'views/message/newmessage.php')) {
                 show_404();
             }
+            if (isset ($_GET['email'])){ //if accesses via address book, auto fill email input
+                $query = $this->User_model->get_user($_GET['email']);
+                $data['email'] = $query;
+            }
 
             $this->load->library('form_validation');
             $this->form_validation->set_rules('newMsgEmail', 'Email', 'required');
             $this->form_validation->set_rules('newMsgSubject', 'Subject', 'required');
             $data['title'] = 'New Message';
 
+
             if($this->form_validation->run() == FALSE){
                 $this->load->view('templates/header', $data);
-                $this->load->view('/message/newmessage');
+                $this->load->view('/message/newmessage', $data);
                 $this->load->view('templates/footer');
             }
             else if ($this->form_validation->run() == TRUE
@@ -131,11 +136,11 @@ class Message extends CI_Controller {
 
                 $this->load->view('templates/header', $data);
                 $this->load->view('/message/messagesent'); //TODO: change to success message
-                $this->load->view('/message/newannouncement');
+                $this->load->view('/message/createannouncement');
                 $this->load->view('templates/footer');
             } else {
                 $this->load->view('templates/header', $data);
-                $this->load->view('/message/newannouncement');
+                $this->load->view('/message/createannouncement');
                 $this->load->view('templates/footer');
             }
         }

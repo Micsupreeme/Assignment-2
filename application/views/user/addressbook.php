@@ -31,7 +31,7 @@
 		<?php 
 			//The "Message" action can be performed by anyone on anyone except themselves
 			if($user['usr_id'] != $this->session->userdata('id')) {
-				echo '<td><a href="INSERT MESSAGE LINK HERE">Message</a></td>';
+				echo '<td><a href="'. base_url('index.php/message/newmessage/') . '?email=' . $user['usr_id'] . '">Message</a></td>';
 			} else {
 				echo '<td></td>';
 			}
