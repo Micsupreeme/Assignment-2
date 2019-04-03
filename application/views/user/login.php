@@ -11,5 +11,5 @@
         <input class="loginFields" type="password" name="userPassword" placeholder="Enter your Password"><br>
         <button name="login" type="submit" id="login" value="Log In">Login</button>
 </form>
-<p>New user? Please <a href="<?php echo base_url('index.php/user/registerUser'); ?>">register</a></p>
+<p>New user? Please <a href="<?php echo base_url('user/registerUser'); ?>">register</a></p>
 </body>

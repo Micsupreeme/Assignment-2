@@ -15,7 +15,7 @@ switch ($user_instance['usr_auth_level']) {
 		break;
 }?>"/><br>
 <?php if ('/Assignment-2/index.php/user/profile/' . $this->session->userdata('id')==($_SERVER['REQUEST_URI'])){
-    echo '<a href=" ' . base_url('index.php/user/editprofile') . ' ">Edit Profile</a><br>';
+    echo '<a href=" ' . base_url('user/editprofile') . ' ">Edit Profile</a><br>';
 }?>
 <label>Name: <?php echo $user_instance['usr_first_name'] . ' ' . $user_instance['usr_last_name']; ?> </label><br>
 <label>Role: <?php
@@ -48,7 +48,7 @@ switch ($user_instance['usr_auth_level']) {
 			if (empty($data['user_lecturer'])) { //If the student has no assigned lecturer, display something else instead of NULL
 				echo '<label>Assigned Lecturer: Not Set</label><br>';
 			} else {
-				echo '<label>Assigned Lecturer: ' . '<a href="' . base_url('index.php/user/profile/' . $data['user_lecturer']['usr_id']) . '">' . $data['user_lecturer']['usr_first_name'] . ' ' . $data['user_lecturer']['usr_last_name'] . '</a></label><br>';
+				echo '<label>Assigned Lecturer: ' . '<a href="' . base_url('user/profile/' . $data['user_lecturer']['usr_id']) . '">' . $data['user_lecturer']['usr_first_name'] . ' ' . $data['user_lecturer']['usr_last_name'] . '</a></label><br>';
 			}
 		}
 		

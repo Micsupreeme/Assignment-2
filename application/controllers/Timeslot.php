@@ -44,7 +44,7 @@ class Timeslot extends CI_Controller {
 
         if ($this->form_validation->run() === TRUE) {
             $this->Timeslot_model->addTimeslot($this->session->userdata('id'));
-            redirect(base_url() . 'index.php/timeslot/manage', 'refresh');
+            redirect(base_url('timeslot/manage/') , 'refresh');
         }
         $this->load->view('timeslot/addtimeslot', $data);
         $this->load->view('templates/footer');
@@ -55,7 +55,7 @@ class Timeslot extends CI_Controller {
             return true;
         }
         else{
-            redirect(base_url().'index.php/user/login');
+            redirect(base_url('user/login/'));
             return false;
         }
     }

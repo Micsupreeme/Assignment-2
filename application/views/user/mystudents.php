@@ -9,7 +9,7 @@
 ?>
 <?php foreach ($user_instance as $user): ?>
 	<div class="main"><tr><td>
-		<?php echo '<a href="' . base_url('index.php/user/profile/' . $user['usr_id']) . '">' . $user['usr_last_name'] . ', ' . $user['usr_first_name'] . '</a>'; ?>
+		<?php echo '<a href="' . base_url('user/profile/' . $user['usr_id']) . '">' . $user['usr_last_name'] . ', ' . $user['usr_first_name'] . '</a>'; ?>
 	</td><td>
 		<?php echo '<a href="' . $_SERVER['PHP_SELF'] . '?removestudent=' . $user['usr_id'] . '">Remove Student</a>'; ?>
 	</td></tr>

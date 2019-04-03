@@ -13,7 +13,7 @@
 	}
     echo '<br>';
     echo '<br>';
-    echo '<a href="' . base_url('index.php/meeting/arrange') . '">New Meeting</a>';
+    echo '<a href="' . base_url('meeting/arrange') . '">New Meeting</a>';
 	if(empty($meeting_instance)) {
 		echo '.</p><table>';
 	} else {

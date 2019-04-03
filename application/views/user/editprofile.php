@@ -1,4 +1,4 @@
-<form method = "post" action = "<?php echo base_url('index.php/user/editProfile');?>">
+<form method = "post" action = "<?php echo base_url('user/editProfile');?>">
     <h1>Bio</h1>
 
     <textarea name="taBio" rows="4" cols="50"><?php echo $user_instance['usr_bio']; ?>

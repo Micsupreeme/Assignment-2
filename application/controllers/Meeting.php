@@ -86,7 +86,7 @@ class Meeting extends CI_Controller {
 				if ($this->form_validation->run() === TRUE) {
 					$this->Meeting_model->addMeeting();
 					$this->Timeslot_model->bookTimeslot();
-					redirect(base_url() . 'index.php/meeting/arrange', 'refresh');
+					redirect(base_url('meeting/display/'));
 				}
 			
 				$this->load->view('meeting/arrangemeeting', $data);
@@ -101,7 +101,7 @@ class Meeting extends CI_Controller {
             return true;
         }
         else{
-            redirect(base_url().'user/login');
+            redirect(base_url('user/login/'));
             return false;
         }
     }
