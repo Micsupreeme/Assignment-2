@@ -23,11 +23,16 @@ class Message extends CI_Controller {
 
             $data['title'] = ucfirst('inbox');
             $data['messages'] = $this->Message_model->get_messages();
-            $data['announcements'] = $this->Message_model->get_announcements();
+
+            if ($this->session->userdata('authLevel') > 0){
+                $data['announcements'] = $this->Message_model->get_authored_announcements();
+            }else{
+                $data['announcements'] = $this->Message_model->get_announcements();
+            }
 
             $this->load->view('templates/header', $data);
             $this->load->view('/message/inbox', $data);
-            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/footer');
         }
     }
 
@@ -36,7 +41,7 @@ class Message extends CI_Controller {
             if (!file_exists(APPPATH . 'views/message/viewmessage.php')) {
                 show_404();
             }
-            $data['title'] = '';
+            $data['title'] = 'View Message';
             $data['message'] = $this->Message_model->get_message($msgID);
 
             if(empty($data['message'])){
@@ -52,7 +57,6 @@ class Message extends CI_Controller {
                 $this->load->view('templates/footer');
             }
         }
-
     }
 
     public function newMessage(){
@@ -97,6 +101,17 @@ class Message extends CI_Controller {
             if (!file_exists(APPPATH . 'views/message/myannouncements.php')) {
                 show_404();
             }
+
+            if(isset($_GET['delete'])) {
+                $this->Message_model->delete_message($_GET['delete']);
+            }
+
+            $data['title'] = 'My Announcements';
+            $data['announcements'] = $this->Message_model->get_authored_announcements();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('/message/myannouncements', $data);
+            $this->load->view('templates/footer');
         }
     }
     public function createAnnouncement(){
@@ -123,6 +138,31 @@ class Message extends CI_Controller {
                 $this->load->view('/message/newannouncement');
                 $this->load->view('templates/footer');
             }
+        }
+    }
+
+    public function viewAnnouncement($msgID){
+        if($this->isLoggedIn()) {
+            if (!file_exists(APPPATH . 'views/message/viewannouncement.php')) {
+                show_404();
+            }
+
+            $data['title'] = 'View Announcement';
+            $data['announcement'] = $this->Message_model->get_announcement($msgID);
+
+            if(empty($data['announcement'])){
+                $data['heading'] = 'Announcement Not Found. ';
+                $data['message'] = 'The Announcement you are looking for is missing.';
+
+                $this->load->view('templates/header', $data);
+                $this->load->view('/errors/cli/error_db', $data);
+                $this->load->view('templates/footer');
+            }else {
+                $this->load->view('templates/header', $data);
+                $this->load->view('/message/viewannouncement', $data);
+                $this->load->view('templates/footer');
+            }
+
         }
     }
 

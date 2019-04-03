@@ -99,7 +99,8 @@ class User extends CI_Controller {
                         'emailAddress' => $result['usr_email'],
                         'firstName' => $result['usr_first_name'],
                         'lastName' => $result['usr_last_name'],
-                        'authLevel' => $result['usr_auth_level']
+                        'authLevel' => $result['usr_auth_level'],
+                        'assLect' => $result['usr_assigned_lecturer_id']
                     );
 
                     $this->session->set_userdata($session_data);

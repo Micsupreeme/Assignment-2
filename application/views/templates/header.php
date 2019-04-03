@@ -12,8 +12,9 @@
         <div class="topnav-right"><a href="<?php echo base_url('index.php/user/logout/');?>">Logout</a></div>
         <?php
             if($this->session->userdata('authLevel') > 0) { //Only show these navigation bar items to Lecturers and Administrators
-                echo '<div class="topnav-right"><a href="' . base_url('index.php/user/students') . '">My Students</a></div>
-                    <div class="topnav-right"><a href="' . base_url('index.php/timeslot/manage') . '">My Timeslots</a></div>';
+                echo '<div class="topnav-right"><a href="' . base_url('index.php/timeslot/manage') . '">My Timeslots</a></div>
+                    <div class="topnav-right"><a href="' . base_url('index.php/message/myannouncements') . '">My Announcements</a></div>
+                    <div class="topnav-right"><a href="' . base_url('index.php/user/students') . '">My Students</a></div>';
             }
         ?>
     </div>

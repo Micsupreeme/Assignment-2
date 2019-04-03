@@ -52,14 +52,29 @@ class Message_model extends CI_Model {
     }
 
     public function get_announcements(){
+        $lecturer = $this->User_model->get_user($this->session->userdata('assLect'));
+
         //get where recipient = announcement and where author = my assigned lecturer
         $this->db->where('msg_recipient', 'announcement');
-        $this->db->where('msg_author', ''); //session would make this easier
+        $this->db->where('msg_author', $lecturer['usr_email']);
         $query = $this->db->get('message');
         return $query;
     }
 
     //get specific announcement
+    public function get_announcement($msgID){
+        if (!empty($msgID)) {
+            $query = $this->db->get_where('message', array('msg_id' => $msgID));
 
-    //get authored announcements | for my announcements page
+            return $query->row_array();
+        }
+    }
+
+    //get authored announcements | for my announcements
+    public function get_authored_announcements(){
+        $this->db->where('msg_recipient', 'announcement');
+        $this->db->where('msg_author', $this->session->userdata('emailAddress')); //session would make this easier
+        $query = $this->db->get('message');
+        return $query;
+    }
 }
