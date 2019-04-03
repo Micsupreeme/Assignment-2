@@ -19,9 +19,15 @@ class User extends CI_Controller {
 			if(isset($_GET['deleteuser']) && $this->session->userdata('authLevel') > 1) {
 				$this->User_model->deleteUser($_GET['deleteuser']);
 			}
-			
-            $data['user_instance'] = $this->User_model->get_user();
-            $data['title'] = 'Address Book';
+
+            if(isset($_GET['searchuser']) && $_GET['searchuser'] != '') {
+                $data['user_instance'] = $this->User_model->search_user($_GET['searchuser']); //Search term specified, return search results only
+                $data['title'] = $_GET['searchuser'] . ' - Address Book';
+            } else {
+                $data['user_instance'] = $this->User_model->get_user(); //No search term specified, return all users
+                $data['title'] = 'Address Book';
+            }
+
             $this->load->view('templates/header', $data);
             $this->load->view('user/addressbook', $data);
             $this->load->view('templates/footer');

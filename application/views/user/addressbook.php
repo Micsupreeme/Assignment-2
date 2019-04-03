@@ -1,4 +1,7 @@
 <h1>Address Book</h1>
+<form name="searchuserForm" method="get" action=""><input type="text" name="searchuser"
+    value="<?php if(isset($_GET['searchuser'])){echo $_GET['searchuser'];}?>">
+    <input type="submit" name="searchuserSubmit" value="Search"></form>
 <p>Browse all users:</p>
 <table>
 		<tr>

@@ -15,6 +15,18 @@ class user_model extends CI_Model {
         return $query->row_array(); //row_array only returns a single record
     }
 
+    public function search_user($searchterm = FALSE) {
+        if($searchterm === FALSE) {
+            $query = $this->db->get('user'); //No search term specified, get all users
+            return $query->result_array();
+        }
+        $this->db->like('usr_first_name', $searchterm); //Search term specified, get all users that match the term in first name, last name or e-mail
+        $this->db->or_like('usr_last_name', $searchterm);
+        $this->db->or_like('usr_email', $searchterm);
+        $query = $this->db->get('user');
+        return $query->result_array();
+    }
+
     public function get_student($lecturerId = FALSE){
         if ($lecturerId === FALSE) {
             $query = $this->db->get('user'); //No ID specified, get all users
