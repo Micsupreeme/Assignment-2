@@ -1,7 +1,7 @@
 
 <form name="addMeet" method="post" action="">
 	<table>
-		<tr><td>Meeting Title</td><td><input type="text" name="title"></td></tr>
+		<tr><th>Meeting Title</th><th><input type="text" name="title"></th></tr>
         <br>
 		<tr class = "hiddenRow"><td>Meeting Timeslot</td><td><input readonly type="text" name="timeslotId" value="<?php echo $_GET['selecttimeslot']; ?>"></td></tr>
 		<tr class = "hiddenRow"><td>Lecturer Attendee</td><td><input readonly type="text" name="lecturerId" value="<?php echo $lecturer['usr_id']; ?>"></td></tr>

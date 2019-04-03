@@ -83,24 +83,6 @@ a:active
     border-color:black
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    table-layout:fixed;
-}
-
-td {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
-}
-
-th{
-    border: 3px solid black;
-    text-align: left;
-    padding: 8px;
-}
-
 deleted
 {
     position:absolute;
@@ -110,6 +92,26 @@ deleted
 form {
     border-collapse: collapse;
     width: 100%;
+}
+
+table {
+    width: 100%;
+    table-layout:fixed;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+th{
+    text-align: left;
+    font-size: 20px;
+    padding: 8px;
+}
+
+tr:hover{
+background-color: #1D2A38;
 }
 
 .hiddenRow{

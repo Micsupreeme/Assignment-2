@@ -17,7 +17,7 @@
 	if(empty($meeting_instance)) {
 		echo '.</p><table>';
 	} else {
-		echo ':</p><table><tr><td>Meeting</td><td></td></tr>';
+		echo ':</p><table><tr><th>Meeting</th><td></td></tr>';
 	}
 
 ?>

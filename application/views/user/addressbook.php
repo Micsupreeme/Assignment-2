@@ -2,11 +2,11 @@
 <p>Browse all users:</p>
 <table>
 		<tr>
-			<td>Role</td>
-			<td>Name</td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<th>Role</th>
+			<th>Name</th>
+			<th></th>
+			<th></th>
+			<th></th>
 		</tr>
 <?php foreach ($user_instance as $user): ?>
 	<div class="main"><tr><td>

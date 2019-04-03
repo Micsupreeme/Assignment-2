@@ -4,7 +4,7 @@
 		echo '<p>You have no outstanding timeslots.</p>';
 	} else {
 		echo '<p>Browse your timeslots:</p>';
-		echo '<table><tr><td>Timeslot</td><td></td></tr>';
+		echo '<table><tr><th>Timeslot</th><td></td></tr>';
 	}
 ?>
 <?php foreach ($timeslot_instance as $timeslot): ?>

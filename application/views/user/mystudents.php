@@ -4,7 +4,7 @@
 		echo '<p>There are no students assigned to you.</p>';
 	} else {
 		echo '<p>Browse students assigned to you:</p>';
-		echo '<table><tr><td>Name</td><td></td></tr>';
+		echo '<table><tr><th>Name</th><td></td></tr>';
 	}
 ?>
 <?php foreach ($user_instance as $user): ?>
