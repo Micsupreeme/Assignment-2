@@ -10,3 +10,4 @@
     <input type="submit" name="newMsgSubmit" value="Submit">
     <input type="reset" name="newMsgClear" value="Clear">
 </form>
+<?php echo validation_errors(); ?>

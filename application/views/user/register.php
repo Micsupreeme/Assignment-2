@@ -17,4 +17,5 @@
     <input name="submit" type="submit" id="Submit" value="Submit">
     <input name="clear" type="submit" id="clear" value="Clear Form">
 </form>
+<?php echo validation_errors(); ?>
 </body>

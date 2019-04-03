@@ -61,8 +61,10 @@ class user_model extends CI_Model {
             'usr_bio' => $this->input->post('taBio'),
             'usr_profile_is_private' => $this->input->post('radVisibility'),
         );
-        $query = $this->db->query ("UPDATE user SET usr_bio = '" . $data['usr_bio'] . "' , usr_profile_is_private = '"
-            . $data['usr_profile_is_private']. "'WHERE usr_id = '". $this->session->userdata('id') . "';");
+
+        $this->db->where('usr_id', $this->session->userdata('id'));
+        $query = $this->db->update('user', array('usr_bio' => $data['usr_bio'],
+            'usr_profile_is_private' => $data['usr_profile_is_private']));
 
         return $query;
     }

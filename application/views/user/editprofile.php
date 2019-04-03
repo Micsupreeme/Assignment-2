@@ -17,3 +17,4 @@
     <input type="submit" name="editProfileSubmit" value="Submit">
     <input type="reset" name="editProfileClear" value="Clear">
 </form>
+<?php echo validation_errors(); ?>

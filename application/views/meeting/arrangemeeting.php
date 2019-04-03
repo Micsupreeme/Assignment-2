@@ -17,3 +17,4 @@
 	<input type="submit" name="addMeetSubmit" value="Submit">
 	<input type="reset" name="addMeetClear" value="Clear">
 </form>
+<?php echo validation_errors(); ?>

@@ -117,6 +117,8 @@ class Message extends CI_Controller {
             $this->load->view('templates/header', $data);
             $this->load->view('/message/myannouncements', $data);
             $this->load->view('templates/footer');
+        }else {
+            redirect(base_url('user/login/'));
         }
     }
     public function createAnnouncement(){
@@ -143,6 +145,8 @@ class Message extends CI_Controller {
                 $this->load->view('/message/createannouncement');
                 $this->load->view('templates/footer');
             }
+        }else {
+            redirect(base_url('user/login/'));
         }
     }
 

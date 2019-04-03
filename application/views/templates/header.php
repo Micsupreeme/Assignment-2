@@ -4,7 +4,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('css/style.css')?>"/>
 </head>
 <body>
-    <div id="navBar" class="topnav" id="myTopnav" si>
+<b><p class="logo"> UniBird</p></b>
+    <div id="navBar" class="topnav" id="myTopnav">
         <a href="<?php echo base_url('user/profile/' . $this->session->userdata('id'));?>">My Profile</a>
         <a href="<?php echo base_url('message/inbox');?>">Messages</a>
         <a href="<?php echo base_url('meeting/display');?>">Meetings</a>

@@ -8,3 +8,4 @@
 	<input type="submit" name="addTimeSubmit" value="Submit">
 	<input type="reset" name="addTimeClear" value="Clear">
 </form>
+<?php echo validation_errors(); ?>
