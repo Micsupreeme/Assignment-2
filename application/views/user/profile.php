@@ -34,14 +34,15 @@ switch ($user_instance['usr_auth_level']) {
             break;
     }?></label><br>
 <?php
-	/*E-mail address, Assigned Lecturer and Bio are protected by profile visibility settings.
+	echo '<label>Email: ' . $user_instance['usr_email'] . '</label><br>';
+	
+	/*Assigned Lecturer and Bio are protected by profile visibility settings.
 	There are 3 cases when you can view this data:
 		1. Profile visibility is set to "All Users".
 		2. You are looking at your own profile.
 		3. Profile visibility is set to "Lecturers Only" and you are a Lecturer or Administrator.
 	*/
 	if($user_instance['usr_profile_is_private'] == 0 || $user_instance['usr_id'] == $this->session->userdata('id') || ($user_instance['usr_profile_is_private'] == 1 && $this->session->userdata('authLevel') > 0)) {
-		echo '<label>Email: ' . $user_instance['usr_email'] . '</label><br>';
 		
 		if($user_instance['usr_auth_level'] == 0) { //Only display an assigned lecturer for students
 			$data['user_lecturer'] = $this->User_model->get_user($user_instance['usr_assigned_lecturer_id']);
