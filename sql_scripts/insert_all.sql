@@ -1,0 +1,47 @@
+INSERT INTO user VALUES(1, "sandrewmoore@uni.ac.uk", "$2y$10$/79rg6hm3pA5VK4416RloufmuPj7CNTqtA6HaOEkHyPmqbyycruhO", "Andrew", "Moore", "Hey!", 2, 0, 1);
+INSERT INTO user VALUES(2, "amathis@uni.ac.uk", "$2y$10$A0T.uIw.JNvnf1ChY/wCxedZ6Y/ht.RfSKkVWBjnbgtDAFLgR74ri", "Amy", "Mathis", "Hello, I am the Programme Leader for Computing courses!", NULL, 1, 0);
+INSERT INTO user VALUES(3, "nfrost@uni.ac.uk", "$2y$10$9.WFQrhnvFVDELLlQKcS6.bYWdC/oXUp/.8YHMlF.bAOqUfvI4OU6", "Nick", "Frost", "'Be yourself; everyone else is already taken.' -Oscar Wilde", NULL, 2, 0);
+INSERT INTO user VALUES(4, "scourtneymarsh@uni.ac.uk", "$2y$10$KL95JDeD/iVLPww29Owwx.IY54QfRAWWvEcJDb4hTT/O194tECCxO", "Courtney", "Marsh", "I am studing BSc (Hons) Software Enginnering.", 2, 0, 0);
+INSERT INTO user VALUES(5, "slukewilson@uni.ac.uk", "$2y$10$Oe8ohooaDikzUgmo3mQOx.colIrPDqHDadd7BPBFgUQ6KoYojU/AS", "Luke", "Wilson", "Film student", 6, 0, 1);
+INSERT INTO user VALUES(6, "kwest@uni.ac.uk", "$2y$10$f5SKZd5PXiHTl96EH6TXkusTl/Jjh0Fdaofo/TsYbs4uBhKJMIUAO", "Kevin", "West", "Film Production and Cinematography lecturer", NULL, 1, 0);
+INSERT INTO user VALUES(7, "sdanreed@uni.ac.uk", "$2y$10$xPq6HesDTooM6j8nNShHaeGBVIg5Z6VPHPHrJcVVMVY.xgSMEddMq", "Dan", "Reed", NULL, NULL, 0, 0);
+
+INSERT INTO message VALUES(1, "sandrewmoore@uni.ac.uk", "Forgot Password", "nfrost@uni.ac.uk", "2019-04-03 13:49:00", "Hi Nick Frost, I am writing to let you know that I have forgotten my password for the university computer network, can it be reset please? Kind regards, Andrew Moore", 0);
+INSERT INTO message VALUES(2, "nfrost@uni.ac.uk", "Re: Forgot Password", "sandrewmoore@uni.ac.uk", "2019-04-03 13:59:29", "No problem Andrew, it has been reset to 'Ij88KO2', please log in then change it. ~Nick", 0);
+INSERT INTO message VALUES(3, "amathis@uni.ac.uk", "Relational Databases Revision", "announcement", "2019-04-03 14:17:39", "Hi Students, I have sent out the practice questions for the upcoming Relational Databases exam by email. Any queries feel free to message or arrange a meeting, I have set up some timeslots for tomorrow and the day after. Best, Amy.", 0);
+INSERT INTO message VALUES(4, "scourtneymarsh@uni.ac.uk", "Relational Databases Q3", "sandrewmoore@uni.ac.uk", "2019-04-03 14:23:49", "hey andy, have you done question 3 for relational databases?", 0);
+INSERT INTO message VALUES(5, "sandrewmoore@uni.ac.uk", "Re: Relational Databases Q3", "scourtneymarsh@uni.ac.uk", "2019-04-03 14:26:27", "No I don't think we covered unions did we? I'll ask Amy.", 0);
+INSERT INTO message VALUES(6, "sandrewmoore@uni.ac.uk", "Unions", "amathis@uni.ac.uk", "2019-04-03 14:32:20", "Hi Amy, I see that question 3 of the relational databases practice questions is about a 'union' keyword, have we covered that?", 0);
+INSERT INTO message VALUES(7, "amathis@uni.ac.uk", "Re: Unions", "sandrewmoore@uni.ac.uk", "2019-04-03 14:36:09", "Hi Andrew, yes we covered unions during lecture 6, a union is the result-set of two or more SELECT statements. The columns must be the same for both result-sets though. Hope this helps.", 0);
+INSERT INTO message VALUES(8, "scourtneymarsh@uni.ac.uk", "Re: Re: Relational Databases Q3", "sandrewmoore@uni.ac.uk", "2019-04-03 14:39:00", "Yeah ikr? Anyway I arranged to meet Amy on Friday, I'll let you know if I find anything else out.", 0);
+INSERT INTO message VALUES(9, "slukewilson@uni.ac.uk", "Script Assignment", "kwest@uni.ac.uk", "2019-04-03 14:46:00", "Hi Kevin, I am wondering what is the preferred file format to upload the script with, also are there any assignment support sessions where I can get feedback on what I have so far?", 0);
+INSERT INTO message VALUES(10, "sandrewmoore@uni.ac.uk", "Unions Lecture", "scourtneymarsh@uni.ac.uk", "2019-04-03 14:49:46", "So she said we covered unions in lecture 6, we should look at that, maybe work on them tomorrow too? But yeah definitely let me know if you find anything else out on Friday", 0);
+INSERT INTO message VALUES(11, "kwest@uni.ac.uk", "Re: Script Assignment", "slukewilson@uni.ac.uk", "2019-04-03 14:56:58", "Hi Luke, thanks for your message. I would prefer PDF format for the upload. As for assignment support, I would be happy to meet up and provide feedback during any of the timeslots I have arranged for next Monday and Tuesday - you can choose to arrange a meeting during any of those timeslots (I'll be in F201). I'll post this as an announcement too. Kind regards, Kevin.", 0);
+INSERT INTO message VALUES(12, "kwest@uni.ac.uk", "Script Assignment Upload", "announcement", "2019-04-03 15:01:59", "Hi, just writing to let you know that the assignment submission area for the script assignment has been set up, due date is 19/04/2019 12:30, please upload in PDF format as it allows me to download it faster. All the best, Kevin.", 0);
+INSERT INTO message VALUES(13, "kwest@uni.ac.uk", "Script Assignment Support", "announcement", "2019-04-03 15:05:20", "Hi All, I forgot to mention that I also set up some timeslots for next Tuesday and Wednesday that you can book if you would like to meet with me and get some support, feedback and advise regarding the assignment, prior to the deadline. All the best, Kevin.", 0);
+INSERT INTO message VALUES(14, "amathis@uni.ac.uk", "Mid-Unit Progress Review", "announcement", "2019-04-03 15:14:54", "Hi class, I have arranged Mid-Unit Progress Review meetings with everyone during next week's seminars. Please let me know if you will be unable to attend. Kind regards, Amy Mathis.", 0);
+INSERT INTO message VALUES(15, "scourtneymarsh@uni.ac.uk", "Mid-Unit Progress Review", "amathis@uni.ac.uk", "2019-04-03 15:18:53", "Hi Amy, I am writing to let you know that I will be unable to attend the Mid-Unit Progress Review meeting because I have a doctor's appointment at that time. Can we meet the same time the next day instead? -Courtney.", 0);
+INSERT INTO message VALUES(16, "amathis@uni.ac.uk", "Re: Mid-Unit Progress Review", "scourtneymarsh@uni.ac.uk", "2019-04-03 15:23:49", "Hi Courtney, thank you for letting me know. That is no problem, I have re-arranged your Mid-Unit Progress Review meeting for the next day at the same time. On Friday I will be in P201 instead. Kind regards, Amy.", 0);
+INSERT INTO message VALUES(17, "scourtneymarsh@uni.ac.uk", "Re: Re: Mid-Unit Progress Review", "amathis@uni.ac.uk", "2019-04-03 15:25:43", "Thank you, I look forward to meeting with you then.", 0);
+INSERT INTO message VALUES(18, "sdanreed@uni.ac.uk", "No Assigned Lecturer", "nfrost@uni.ac.uk", "2019-04-03 15:29:26", "Hi, my friend Luke said that our lecturer Kevin sent out some announcements but I can't see them?", 0);
+INSERT INTO message VALUES(19, "nfrost@uni.ac.uk", "Re: No Assigned Lecturer", "sdanreed@uni.ac.uk", "2019-04-03 15:33:24", "Hi Dan, sorry to hear that you are experiencing issues. I have looked into it and it seems that you do not have an assigned lecturer set on this system. I will confirm with Kevin, letting him know that you are currently unassigned. When Kevin adds you then you will be able to see his announcements.", 0);
+INSERT INTO message VALUES(20, "nfrost@uni.ac.uk", "Unassigned Student", "kwest@uni.ac.uk", "2019-04-03 15:36:29", "Hi Kevin, a student, Dan Reed has let me know that you are his assigned lecturer, but that you have not added him to your My Students list so he cannot see your announcements. Does this sound correct? Kind regards, Nick.", 0);
+INSERT INTO message VALUES(21, "kwest@uni.ac.uk", "Re: Unassigned Student", "nfrost@uni.ac.uk", "2019-04-03 15:38:49", "Hi Nick, thank you for letting me know. Yes Dan is a student in my class, I will add him to my students list now. -Kevin", 0);
+
+INSERT INTO timeslot VALUES(1, "2019-04-04 10:45:00", "2019-04-04 11:00:00", 2, 0, "P203");
+INSERT INTO timeslot VALUES(2, "2019-04-04 14:00:00", "2019-04-04 14:20:00", 2, 0, "P201");
+INSERT INTO timeslot VALUES(3, "2019-04-04 14:20:00", "2019-04-04 14:40:00", 2, 0, "P201");
+INSERT INTO timeslot VALUES(4, "2019-04-05 11:30:00", "2019-04-05 11:45:00", 2, 0, "B326");
+INSERT INTO timeslot VALUES(5, "2019-04-05 11:45:00", "2019-04-05 12:00:00", 2, 1, "B326");
+INSERT INTO timeslot VALUES(6, "2019-04-09 09:30:00", "2019-04-09 10:00:00", 6, 0, "F201");
+INSERT INTO timeslot VALUES(7, "2019-04-09 15:30:00", "2019-04-09 16:00:00", 6, 1, "F201");
+INSERT INTO timeslot VALUES(8, "2019-04-10 12:05:00", "2019-04-10 12:20:00", 6, 0, "F201");
+INSERT INTO timeslot VALUES(9, "2019-04-10 12:25:00", "2019-04-10 12:40:00", 6, 0, "F201");
+INSERT INTO timeslot VALUES(10, "2019-04-11 10:00:00", "2019-04-11 10:20:00", 2, 1, "P203");
+INSERT INTO timeslot VALUES(11, "2019-04-11 10:20:00", "2019-04-11 10:40:00", 2, 1, "P203");
+INSERT INTO timeslot VALUES(13, "2019-04-12 10:20:00", "2019-04-12 10:40:00", 2, 1, "P201");
+
+INSERT INTO meeting VALUES(1, 5, "Relational Databases Support", 2, 4);
+INSERT INTO meeting VALUES(2, 10, "Mid-Unit Progress Review", 2, 1);
+INSERT INTO meeting VALUES(4, 13, "Mid-Unit Progress Review", 2, 4);
+INSERT INTO meeting VALUES(5, 7, "Support with Script Assignment", 6, 5);
